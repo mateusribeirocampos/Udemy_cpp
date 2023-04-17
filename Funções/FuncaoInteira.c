@@ -9,12 +9,21 @@ int retornaDez()
     return 10;
 }
 
+char retornaLetra() {
+    return 'i';
+}
+
 
 int main()
 {
     //Definição variável
     int a;
     float b;
+    char letra;
+
+    letra = retornaLetra();
+
+    printf("%c\n", letra);
 
     // passando o retorno de um função para uma variável
     a = retornaDez();
