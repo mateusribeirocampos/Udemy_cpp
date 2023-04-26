@@ -18,17 +18,18 @@ int main()
     printf("Digite o tamanho do vetor: ");
     scanf("%d", &tamanho_vetor);
 
-    nomesVetor = alocacao_Din_Vetor(tamanho_vetor);
+    nomesVetor = alocacao_Din_Vetor(tamanho_vetor*30);
 
     for (int i = 0; i < tamanho_vetor; i++)
     {
         printf("\nDigite os nomes das pessoas para cada vetor[%i] = ", i);
-        scanf("%s", &nomesVetor);
+        fgets(nomesVetor+i*30, 30, stdin);
+        strtok(nomesVetor+i*30, "\n");
     }
 
     for (int i = 0; i < tamanho_vetor; i++)
     {
-        printf("No nome no vetor = %s\n", nomesVetor[i]);
+        printf("No nome no vetor = %s\n", nomesVetor+i*30);
     }
 
     free(nomesVetor);
