@@ -26,7 +26,7 @@ int main()
         scanf("%s", &nomesVetor);
     }
 
-    for (char i = 0; i < tamanho_vetor; i++)
+    for (int i = 0; i < tamanho_vetor; i++)
     {
         printf("No nome no vetor = %s\n", nomesVetor[i]);
     }
