@@ -19,6 +19,7 @@ int main() {
         vetor[cont] = cont;
         printf("\n%d", vetor[cont]);
     }
+    free(vetor);
 
     return 0;
 }
