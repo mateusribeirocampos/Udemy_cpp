@@ -1,7 +1,5 @@
-/*Matrix será de ponteiro para ponteiro*/
-
-#include <stdio.h>
-#include <stdlib.h>
+#include <stdio.h> // Inclusão da biblioteca para entrada e saída de dados
+#include <stdlib.h> // Inclusão da biblioteca para alocação de memória dinâmica
 
 int main()
 {
@@ -9,9 +7,9 @@ int main()
     int linhas, colunas;
 
     printf("Digite o numero de linhas: ");
-    scanf("%d", &linhas);
+    scanf("%d", &linhas); // Leitura do número de linhas da matriz
     printf("\nDigite o numero de colunas: ");
-    scanf("%d", &colunas);
+    scanf("%d", &colunas); // Leitura do número de colunas da matriz
 
     // ponteiro apontando para outro ponteiro
     int **matriz;
@@ -19,24 +17,29 @@ int main()
     // Alocar memória para as linhas
     matriz = (int **)malloc(linhas * sizeof(int *));
 
-    // Alocar memória para as conlunas de cada linha
+    // Alocar memória para as colunas de cada linha
     for (int i = 0; i < linhas; i++)
     {
         matriz[i] = (int *)malloc(colunas * sizeof(int));
     }
 
-    // Preechendo valores e exibindo a matriz
-    for (int i = 0; i < linhas; i++)
+    // Preenchendo valores e exibindo a matriz
+    for (int i = 0; i < linhas; i++) // Loop para percorrer as linhas da matriz
     {
-        for (int j = 0; j < colunas; j++)
+        for (int j = 0; j < colunas; j++) // Loop para percorrer as colunas da matriz
         {
-            matriz[i][j] = i;
-            printf("%d ", matriz[i][j]);
+            matriz[i][j] = i; // Atribuição de um valor (no caso, o número da linha) para cada posição da matriz
+            printf("%d ", matriz[i][j]); // Impressão da matriz na tela
         }
-        printf("\n");
+        printf("\n"); // Pula uma linha após imprimir uma linha completa da matriz
     }
 
-    free(matriz);
+    // Liberar memória alocada
+    for (int i = 0; i < linhas; i++)
+    {
+        free(matriz[i]); // Liberar a memória alocada para as colunas de cada linha
+    }
+    free(matriz); // Liberar a memória alocada para as linhas
 
-    return 0;
+    return 0; // Fim do programa
 }
