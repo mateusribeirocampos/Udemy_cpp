@@ -22,8 +22,5 @@ int main() {
 
     cout << "Fruta: " << primeiraFruta->nome << ", cor: " << primeiraFruta->cor;
 
-    
-
-
     return 0;
 }
