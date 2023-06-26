@@ -10,7 +10,7 @@ int main () {
 
     arquivoDeSaida.open("Texto.txt", std::ios_base::app);
 
-    arquivoDeSaida << "\nRodrigo Silveira\nSandra Albuquerque\nIsadora Silveira";
+    arquivoDeSaida << "\nRodrigo Silveira\nSandra Albuquerque\nIsadora Silveira\nEduardo Rodrigues";
 
     arquivoDeSaida.close();
 
