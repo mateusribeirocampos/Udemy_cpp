@@ -18,26 +18,34 @@ void imprime_vetor(int vetor[TAM])
 
 int busca_Binaria(int vetor[TAM], int valorProcurado, int *posicaoEncontrada)
 {
-    bool valorFoiEncontrado;
+    int esquerda = 0;      // limite da esquerda
+    int direita = TAM - 1; // limite da direita
+    int meio;              // o meio onde fica o cursor
 
-    // Percorre a lista em busca do valor
-    for (int posicao = 0; posicao < TAM; posicao++)
+    while (esquerda <= direita)
     {
-        if (vetor[posicao] == valorProcurado)
+
+        // Encontra o meio da análise
+        meio = (esquerda + direita) / 2;
+
+        // quando o valor do meio é encontrado
+        if (valorProcurado == vetor[meio])
         {
-            valorFoiEncontrado = true;
-            *posicaoEncontrada = posicao;
+            *posicaoEncontrada = meio;
+            return 1;
+        }
+
+        // Ajustando os limites laterais
+        if (vetor[meio] < valorProcurado)
+        {
+            esquerda = meio + 1;
+        }
+        else
+        {
+            direita = meio - 1;
         }
     }
-
-    if (valorFoiEncontrado)
-    {
-        return 1;
-    }
-    else
-    {
-        return -1;
-    }
+    return -1;
 }
 
 int main()
@@ -46,8 +54,10 @@ int main()
     int valorProcurado; // usuario vai buscar
     int posicaoEncontrada;
 
+    // Imprime o vetor na tela
     imprime_vetor(vetor);
 
+    // len do o número buscada
     printf("Qual numero deseja encontrar: ");
     scanf("%d", &valorProcurado);
 
