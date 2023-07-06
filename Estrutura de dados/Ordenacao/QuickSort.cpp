@@ -24,18 +24,18 @@ void quickSort(int vetor[TAM], int inicio, int fim)
     // ajustando auxiliares do centro
     meio = (int)((esquerda + direita) / 2);
     pivo = vetor[meio];
-
+    //
     while (direita > esquerda)
     {
-
+        //Enquanto o vetor a esquerda for menor que o pivo
         while (vetor[esquerda] < pivo)
-        {
+        {   //acrescente o valor a esquerda
             esquerda = esquerda + 1;
-        }
+        }//Enquanto o vetor da direita for maior que o pivo
         while (vetor[direita] > pivo)
-        {
+        {   //diminir o valor a direita
             direita = direita - 1;
-        }
+        }//Se a esquerda for menor e igual a direita
         if (esquerda <= direita)
         {
             // realiza uma troca
