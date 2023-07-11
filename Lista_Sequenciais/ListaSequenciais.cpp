@@ -38,6 +38,7 @@ int main()
 
     for (int i = 0; i < TAM; i++)
     {
+        printf("Digite o valor do vetor[%d]: ", i);
         scanf("%d", &vetor[i]);
     }
 
@@ -55,6 +56,7 @@ int main()
 
     for (int i = 0; i < tamanhoDaLista; i++)
     {
+        printf("Digite valor %d: ", i);
         scanf("%d", &vetorLidoNaHora[i]);
     }
 
@@ -66,7 +68,7 @@ int main()
     //lendo novos valores
     for (int i = 0; i < 5; i++)
     {
-        printf("Digite o valor numero: %d ", i);
+        printf("Digite o valor numero do vetor[%d]: ", i);
         scanf("%d", &vetorEmPlusPlus[i]);
     }
     
