@@ -4,9 +4,22 @@
 #include <stdlib.h>
 using namespace std;
 
+struct pessoa{
+    string nome;
+    int rg;
+};
+
 void limparTela()
 {
     system("cls");
+}
+
+void imprimeSequencial(pessoa *ponteiroSequencial, int tamanhoDaLista){
+    for (int i = 0; i < tamanhoDaLista; i++)
+    {
+        cout << i << " - " << ponteiroSequencial[i].nome << ", " << ponteiroSequencial[i].rg << endl;
+    }
+    
 }
 
 int main()
@@ -14,6 +27,28 @@ int main()
     // Variáveis
     int funcaoDesejada = 1;
 
+    //ponteiro para lista sequencial
+    pessoa *ponteiroSequencial;
+
+    //Tamanho da lista
+    int tamanhoDaLista = 0;
+
+    //Exemplo
+    pessoa *exemploListaSequencial = new pessoa[2]; //vai alocar na memória exatamente o necessário
+
+    //dois registro de exemplo;
+    exemploListaSequencial[0].nome = "John";
+    exemploListaSequencial[0].rg = 123;
+    exemploListaSequencial[1].nome = "Maicon";
+    exemploListaSequencial[1].rg = 456;
+
+    //Faz o ponteiro principal apontar para o novo vetor
+    ponteiroSequencial = exemploListaSequencial;
+
+    //imprime a lista completa
+    imprimeSequencial(ponteiroSequencial, 2);
+
+    //Menu
     while (funcaoDesejada < 10 && funcaoDesejada > 0)
     {
         cout << "-------------------------------------------\n";
