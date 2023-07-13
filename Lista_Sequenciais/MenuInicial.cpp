@@ -4,7 +4,8 @@
 #include <stdlib.h>
 using namespace std;
 
-struct pessoa{
+struct pessoa
+{
     string nome;
     int rg;
 };
@@ -14,12 +15,49 @@ void limparTela()
     system("cls");
 }
 
-void imprimeSequencial(pessoa *ponteiroSequencial, int tamanhoDaLista){
+void imprimeSequencial(pessoa *ponteiroSequencial, int tamanhoDaLista)
+{
     for (int i = 0; i < tamanhoDaLista; i++)
     {
         cout << i << " - " << ponteiroSequencial[i].nome << ", " << ponteiroSequencial[i].rg << endl;
     }
-    
+}
+// ponteiro com scopo global *&
+void adcComecoSequencial(pessoa *&ponteiroSequencial, int *tamnanhoDaLista, string nome, int rg)
+{
+    // Se a lista for vazia
+    if (*tamnanhoDaLista == 0)
+    {
+        // Caso a lista já tenha membros
+        pessoa *novaListaSequencial = new pessoa[*tamnanhoDaLista + 1];
+        // insere o primeiro novo elemento
+        novaListaSequencial[0].nome = nome;
+        novaListaSequencial[0].rg = rg;
+
+        // Atualiza o ponteiro para a lista nova
+        ponteiroSequencial = novaListaSequencial;
+    }
+    else
+    {
+        // Caso a lista já tenha membros
+        pessoa *novaListaSequencial = new pessoa[*tamnanhoDaLista + 1];
+
+        // insere o primeiro novo elemento
+        novaListaSequencial[0].nome = nome;
+        novaListaSequencial[0].rg = rg;
+
+        for (int cont = 0; cont < *tamnanhoDaLista; cont++)
+        {
+            novaListaSequencial[cont + 1].nome = ponteiroSequencial[cont].nome;
+            novaListaSequencial[cont + 1].rg = ponteiroSequencial[cont].rg;
+        }
+
+        // Atualiza o ponteiro para a lista nova
+        ponteiroSequencial = novaListaSequencial;
+    }
+
+    //aumenta o tamanho da lista em 1
+    *tamnanhoDaLista = *tamnanhoDaLista + 1;
 }
 
 int main()
@@ -27,30 +65,30 @@ int main()
     // Variáveis
     int funcaoDesejada = 1;
 
-    //ponteiro para lista sequencial
+    // ponteiro para lista sequencial
     pessoa *ponteiroSequencial;
 
-    //Tamanho da lista
+    // Tamanho da lista
     int tamanhoDaLista = 0;
 
-    //Exemplo
-    pessoa *exemploListaSequencial = new pessoa[2]; //vai alocar na memória exatamente o necessário
+    // Exemplo
+    pessoa *exemploListaSequencial = new pessoa[2]; // vai alocar na memória exatamente o necessário
 
-    //dois registro de exemplo;
-    exemploListaSequencial[0].nome = "John";
+    // dois registro de exemplo;
+    /*exemploListaSequencial[0].nome = "John";
     exemploListaSequencial[0].rg = 123;
     exemploListaSequencial[1].nome = "Maicon";
-    exemploListaSequencial[1].rg = 456;
+    exemploListaSequencial[1].rg = 456;*/
 
-    //Faz o ponteiro principal apontar para o novo vetor
+    // Faz o ponteiro principal apontar para o novo vetor
     ponteiroSequencial = exemploListaSequencial;
 
-    //imprime a lista completa
-    imprimeSequencial(ponteiroSequencial, 2);
-
-    //Menu
+    // Menu
     while (funcaoDesejada < 10 && funcaoDesejada > 0)
     {
+        // imprime a lista completa
+        imprimeSequencial(ponteiroSequencial, tamanhoDaLista);
+
         cout << "-------------------------------------------\n";
         cout << "Operacoes \n";
         cout << "1 - Insercao de um Node no inicio da lista. \n";
@@ -68,10 +106,22 @@ int main()
 
         limparTela();
 
+        // Variáveis usadas nas operações
+        string nome;
+        int rg;
+
         switch (funcaoDesejada)
         {
         case 1:
-            cout << "\nFuncao escolhida 1 \n";
+            cout << "\nFuncao escolhida 1 - Insercao de um Node no inicio da lista. \n";
+
+            cout << "Digite o nome: ";
+            cin >> nome;
+            cout << "Digite o RG: ";
+            cin >> rg;
+
+            adcComecoSequencial(ponteiroSequencial, &tamanhoDaLista, nome, rg);
+
             break;
         case 2:
             cout << "\nFuncao escolhida 2 \n";
