@@ -23,13 +23,13 @@ void imprimeSequencial(pessoa *ponteiroSequencial, int tamanhoDaLista)
     }
 }
 // ponteiro com scopo global *&
-void adcComecoSequencial(pessoa *&ponteiroSequencial, int *tamnanhoDaLista, string nome, int rg)
+void adcComecoSequencial(pessoa *&ponteiroSequencial, int *tamanhoDaLista, string nome, int rg)
 {
     // Se a lista for vazia
-    if (*tamnanhoDaLista == 0)
+    if (*tamanhoDaLista == 0)
     {
         // Caso a lista já tenha membros
-        pessoa *novaListaSequencial = new pessoa[*tamnanhoDaLista + 1];
+        pessoa *novaListaSequencial = new pessoa[*tamanhoDaLista + 1];
         // insere o primeiro novo elemento
         novaListaSequencial[0].nome = nome;
         novaListaSequencial[0].rg = rg;
@@ -40,13 +40,13 @@ void adcComecoSequencial(pessoa *&ponteiroSequencial, int *tamnanhoDaLista, stri
     else
     {
         // Caso a lista já tenha membros
-        pessoa *novaListaSequencial = new pessoa[*tamnanhoDaLista + 1];
+        pessoa *novaListaSequencial = new pessoa[*tamanhoDaLista + 1];
 
         // insere o primeiro novo elemento
         novaListaSequencial[0].nome = nome;
         novaListaSequencial[0].rg = rg;
 
-        for (int cont = 0; cont < *tamnanhoDaLista; cont++)
+        for (int cont = 0; cont < *tamanhoDaLista; cont++)
         {
             novaListaSequencial[cont + 1].nome = ponteiroSequencial[cont].nome;
             novaListaSequencial[cont + 1].rg = ponteiroSequencial[cont].rg;
@@ -56,8 +56,31 @@ void adcComecoSequencial(pessoa *&ponteiroSequencial, int *tamnanhoDaLista, stri
         ponteiroSequencial = novaListaSequencial;
     }
 
-    //aumenta o tamanho da lista em 1
-    *tamnanhoDaLista = *tamnanhoDaLista + 1;
+    // aumenta o tamanho da lista em 1
+    *tamanhoDaLista = *tamanhoDaLista + 1;
+}
+
+void adcFimSequencial(pessoa *&ponteiroSequencial, int *tamanhoDaLista, string nome, int rg)
+{
+
+    // Criar uma lista com um tamanho maior
+    pessoa *novaListaSequencial = new pessoa[*tamanhoDaLista + 1];
+
+    for (int cont = 0; cont < *tamanhoDaLista; cont++)
+    {
+        novaListaSequencial[cont].nome = ponteiroSequencial[cont].nome;
+        novaListaSequencial[cont].rg = ponteiroSequencial[cont].rg;
+    }
+
+    // posiciona o último elemento
+    novaListaSequencial[*tamanhoDaLista].nome = nome;
+    novaListaSequencial[*tamanhoDaLista].rg = rg;
+
+    // Atualiza o ponteiro para a lista nova
+    ponteiroSequencial = novaListaSequencial;
+
+    // aumenta o tamanho da lista em 1
+    *tamanhoDaLista = *tamanhoDaLista + 1;
 }
 
 int main()
@@ -124,7 +147,23 @@ int main()
 
             break;
         case 2:
-            cout << "\nFuncao escolhida 2 \n";
+            cout << "\nFuncao escolhida 2 - Insercao de um Node no fim da lista. \n";
+
+            cout << "Digite o nome: ";
+            cin >> nome;
+            cout << "Digite o RG: ";
+            cin >> rg;
+
+            // Se a lista for vazia, usamos a função de cria no início
+            if (tamanhoDaLista == 0)
+            {
+                adcComecoSequencial(ponteiroSequencial, &tamanhoDaLista, nome, rg);
+            }
+            else
+            {
+                adcFimSequencial(ponteiroSequencial, &tamanhoDaLista, nome, rg);
+            }
+
             break;
         case 3:
             break;
@@ -139,6 +178,7 @@ int main()
         case 8:
             break;
         case 9:
+            exit(0);
             break;
         default:
             break;
