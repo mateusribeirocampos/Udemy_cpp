@@ -88,6 +88,7 @@ void adcPosicaoSequencial(pessoa *&ponteiroSequencial, int *tamanhoDaLista, stri
     // Criar uma lista com um tamanho maior
     pessoa *novaListaSequencial = new pessoa[*tamanhoDaLista + 1];
 
+    //Passa os elementos do vetor antigo para o novo
     for (int cont = 0; cont < posicao; cont++)
     {
         novaListaSequencial[cont].nome = ponteiroSequencial[cont].nome;
@@ -99,7 +100,7 @@ void adcPosicaoSequencial(pessoa *&ponteiroSequencial, int *tamanhoDaLista, stri
     novaListaSequencial[posicao].rg = rg;
 
     // Coloca o resto dos valores antigos
-    for (int cont = 0; cont < *tamanhoDaLista + 1; cont++)
+    for (int cont = posicao + 1; cont < *tamanhoDaLista + 1; cont++)
     {
         novaListaSequencial[cont].nome = ponteiroSequencial[cont - 1].nome;
         novaListaSequencial[cont].rg = ponteiroSequencial[cont - 1].rg;
@@ -210,7 +211,7 @@ void adcPosicaoSequencial(pessoa *&ponteiroSequencial, int *tamanhoDaLista, stri
                 }
                 else if (posicao == tamanhoDaLista)
                 {
-                    // Quando quer adicionar no fim
+                    // Quando quer adicionar ao fim
                     adcFimSequencial(ponteiroSequencial, &tamanhoDaLista, nome, rg);
                 }
                 else
