@@ -129,6 +129,25 @@ void removeInicioSequencial(pessoa *&ponteiroSequencial, int *tamanhoDaLista)
     // Reduz o tamanho da lista em 1
     *tamanhoDaLista = *tamanhoDaLista - 1;
 }
+
+void removeFimSequencial(pessoa *&ponteiroSequencial, int *tamanhoDaLista)
+{
+
+    // Criar uma lista com um tamanho menor
+    pessoa *novaListaSequencial = new pessoa[*tamanhoDaLista - 1];
+
+    for (int cont = 0; cont < *tamanhoDaLista - 1; cont++)
+    {
+        novaListaSequencial[cont].nome = ponteiroSequencial[cont].nome;
+        novaListaSequencial[cont].rg = ponteiroSequencial[cont].rg;
+    }
+
+    // Atualiza o ponteiro para a lista nova
+    ponteiroSequencial = novaListaSequencial;
+
+    // aumenta o tamanho da lista em 1
+    *tamanhoDaLista = *tamanhoDaLista - 1;
+}
 int main()
 {
     // Variáveis
@@ -255,6 +274,17 @@ int main()
 
             break;
         case 5:
+            cout << "\nFuncao escolhida 5 - Retirar um Node no fim da lista. \n";
+
+            //Se a lista for vazia
+            if(tamanhoDaLista == 0) {
+                cout << "\nSua lista esta vazia!\n";
+            }
+            else
+            {
+                removeFimSequencial(ponteiroSequencial, &tamanhoDaLista);
+            }
+
             break;
         case 6:
             break;
