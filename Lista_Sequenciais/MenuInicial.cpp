@@ -148,6 +148,35 @@ void removeFimSequencial(pessoa *&ponteiroSequencial, int *tamanhoDaLista)
     // aumenta o tamanho da lista em 1
     *tamanhoDaLista = *tamanhoDaLista - 1;
 }
+
+void removePosicaoSequencial(pessoa *&ponteiroSequencial, int *tamanhoDaLista, int posicao)
+{
+
+    // Criar uma lista com um tamanho menor
+    pessoa *novaListaSequencial = new pessoa[*tamanhoDaLista - 1];
+
+    // passo os valores de acordo com o contador
+    for (int i = 0; i < *tamanhoDaLista - 1; i++)
+    {
+        // Se estiver antes da posição passa normalmente
+        if (i < posicao)
+        {
+            novaListaSequencial[i].nome = ponteiroSequencial[i].nome;
+            novaListaSequencial[i].rg = ponteiroSequencial[i].rg;
+        }
+        else
+        {
+            novaListaSequencial[i].nome = ponteiroSequencial[i + 1].nome;
+            novaListaSequencial[i].rg = ponteiroSequencial[i + 1].rg;
+        }
+    }
+
+    // Atualiza o ponteiro para a lista nova
+    ponteiroSequencial = novaListaSequencial;
+
+    // aumenta o tamanho da lista em 1
+    *tamanhoDaLista = *tamanhoDaLista - 1;
+}
 int main()
 {
     // Variáveis
@@ -276,8 +305,9 @@ int main()
         case 5:
             cout << "\nFuncao escolhida 5 - Retirar um Node no fim da lista. \n";
 
-            //Se a lista for vazia
-            if(tamanhoDaLista == 0) {
+            // Se a lista for vazia
+            if (tamanhoDaLista == 0)
+            {
                 cout << "\nSua lista esta vazia!\n";
             }
             else
@@ -287,6 +317,32 @@ int main()
 
             break;
         case 6:
+            cout << "\nFuncao escolhida 5 - Retirar um Node na posicao N. \n";
+
+            // Se a lista for vazia
+            if (tamanhoDaLista == 0)
+            {
+                cout << "\nSua lista esta vazia!\n";
+            }
+            else
+            {
+                cout << "Digite uma posicao: ";
+                cin >> posicao;
+
+                if (posicao == 0)
+                {
+                    // remove uma posição especifica
+                    removeInicioSequencial(ponteiroSequencial, &tamanhoDaLista);
+                }
+                else if (posicao == tamanhoDaLista - 1)
+                {
+                    removeFimSequencial(ponteiroSequencial, &tamanhoDaLista);
+                }
+                else
+                {
+                    removePosicaoSequencial(ponteiroSequencial, &tamanhoDaLista, posicao);
+                }
+            }
             break;
         case 7:
             break;
