@@ -177,6 +177,23 @@ void removePosicaoSequencial(pessoa *&ponteiroSequencial, int *tamanhoDaLista, i
     // aumenta o tamanho da lista em 1
     *tamanhoDaLista = *tamanhoDaLista - 1;
 }
+
+string retornaNomeSequencial(pessoa *&ponteiroSequencial, int *tamanhoDaLista, int rg)
+{
+    string nome = "Nome nao encontrado!";
+
+    // Busca pelo nome com o rg digitado
+    for (int i = 0; i < *tamanhoDaLista; i++)
+    {
+        if (ponteiroSequencial[i].rg == rg)
+        {
+            nome = ponteiroSequencial[i].nome;
+        }
+    }
+
+    return nome;
+}
+
 int main()
 {
     // Variáveis
@@ -188,23 +205,9 @@ int main()
     // Tamanho da lista
     int tamanhoDaLista = 0;
 
-    // Exemplo
-    pessoa *exemploListaSequencial = new pessoa[2]; // vai alocar na memória exatamente o necessário
-
-    // dois registro de exemplo;
-    /*exemploListaSequencial[0].nome = "John";
-    exemploListaSequencial[0].rg = 123;
-    exemploListaSequencial[1].nome = "Maicon";
-    exemploListaSequencial[1].rg = 456;*/
-
-    // Faz o ponteiro principal apontar para o novo vetor
-    ponteiroSequencial = exemploListaSequencial;
-
     // Menu
     while (funcaoDesejada < 10 && funcaoDesejada > 0)
     {
-        // imprime a lista completa
-        imprimeSequencial(ponteiroSequencial, tamanhoDaLista);
 
         cout << "-------------------------------------------\n";
         cout << "Operacoes \n";
@@ -317,7 +320,7 @@ int main()
 
             break;
         case 6:
-            cout << "\nFuncao escolhida 5 - Retirar um Node na posicao N. \n";
+            cout << "\nFuncao escolhida 6 - Retirar um Node na posicao N. \n";
 
             // Se a lista for vazia
             if (tamanhoDaLista == 0)
@@ -352,12 +355,28 @@ int main()
             {
                 cout << "\nSua lista esta vazia!\n";
             }
-            
+            else
+            {
+                cout << "Digite um RG: ";
+                cin >> rg;
 
-
+                cout << "\n\nNome do RG " << rg << ": " << retornaNomeSequencial(ponteiroSequencial, &tamanhoDaLista, rg) << "\n\n";
+            }
 
             break;
         case 8:
+            cout << "\nFuncao escolhida 8 - Imprimir a Lista.\n";
+            
+            // Se a lista for vazia
+            if (tamanhoDaLista == 0)
+            {
+                cout << "\nSua lista esta vazia!\n";
+            }
+            else
+            {
+                // imprime a lista Sequencial completa
+                imprimeSequencial(ponteiroSequencial, tamanhoDaLista);
+            }
             break;
         case 9:
             exit(0);
