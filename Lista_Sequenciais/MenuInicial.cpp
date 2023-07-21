@@ -345,6 +345,17 @@ int main()
             }
             break;
         case 7:
+            cout << "\nFuncao escolhida 7 - Procurar um Node com o campo RG. \n";
+
+            // Se a lista for vazia
+            if (tamanhoDaLista == 0)
+            {
+                cout << "\nSua lista esta vazia!\n";
+            }
+            
+
+
+
             break;
         case 8:
             break;
