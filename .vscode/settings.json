@@ -40,7 +40,8 @@
     "curl.h": "c",
     "ostream": "cpp",
     "random": "c",
-    "stdio.h": "c"
+    "stdio.h": "c",
+    "iostream": "cpp"
   },
   "C_Cpp.errorSquiggles": "disabled"
 }
