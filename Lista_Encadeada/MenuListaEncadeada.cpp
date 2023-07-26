@@ -19,6 +19,12 @@ void limparTela()
 
 int retornaTamanho(pessoa *ponteiroEncadeada)
 {
+    // Verfica se a lista está vazia
+    if (ponteiroEncadeada->nome == "")
+    {
+        return 0;
+    }
+
     // Tamanho da lista
     int tamanho = 0;
 
@@ -43,13 +49,35 @@ void imprimeEncadeada(pessoa *ponteiroEncadeada)
 
     while (p != NULL)
     {
-        //imprime a lista
+        // imprime a lista
         cout << p->nome << ", " << p->rg << endl;
 
         // Atualiza o cursor
         p = p->proximo;
-
     }
+}
+
+void adcComecoEncadeada(pessoa *&ponteiroEncadeada, string nome, int rg)
+{
+
+    // Adiciona novo valor
+    pessoa *novoValor = new pessoa;
+    novoValor->nome = nome;
+    novoValor->rg = rg;
+    novoValor->proximo = ponteiroEncadeada;
+
+    // Verifica se o ponteiro da lista encadeada no nome está vazio seja igual a nulo desencadeando a lista, SENÃO estiver vazio ele coloca no inicio da lista.
+    if (ponteiroEncadeada->nome == "")
+    {
+        novoValor->proximo = NULL;
+    }
+    else
+    {
+        novoValor->proximo = ponteiroEncadeada;
+    }
+
+    // Redireciona o ponteiro
+    ponteiroEncadeada = novoValor;
 }
 
 int main()
@@ -58,8 +86,12 @@ int main()
     int funcaoDesejada = 1;
 
     // Criar um ponteiro principal que vai sempre apontar para primeira estrutura
-    pessoa *ponteiroEncadeada;
+    pessoa *ponteiroEncadeada = new pessoa;
+    ponteiroEncadeada->nome = "";
+    ponteiroEncadeada->rg = 0;
+    ponteiroEncadeada->proximo = NULL;
 
+    /*
     // cria o primeiro valor
     pessoa *novoPrimeiroValor = new pessoa;
     novoPrimeiroValor->nome = "John";
@@ -77,6 +109,7 @@ int main()
 
     // Encadeamento de valores
     novoPrimeiroValor->proximo = novoSegundoValor;
+    */
 
     while (funcaoDesejada < 9 && funcaoDesejada > 0)
     {
@@ -94,17 +127,34 @@ int main()
         cout << "\nEscolha um numero e pressione ENTER: \n";
         cout << "Tamanho Atual: " << retornaTamanho(ponteiroEncadeada) << endl;
 
-        // imprime a lista
-        imprimeEncadeada(ponteiroEncadeada);
+        if (retornaTamanho(ponteiroEncadeada) == 0)
+        {
+            cout << "\nLista Vazia\n";
+        }
+        else
+        {
+            // imprime a lista
+            imprimeEncadeada(ponteiroEncadeada);
+        }
 
         cin >> funcaoDesejada;
 
         limparTela();
 
+        // Adicinar variáveis
+        string nome;
+        int rg;
+
         switch (funcaoDesejada)
         {
         case 1:
             cout << "Funcao escolhida: 1 - Insercao de um Node no inicio da lista. \n";
+            cout << "Digite o nome: ";
+            cin >> nome;
+            cout << "Digite o RG: ";
+            cin >> rg;
+
+            adcComecoEncadeada(ponteiroEncadeada, nome, rg);
 
             break;
         case 2:
