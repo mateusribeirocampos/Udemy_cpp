@@ -80,6 +80,29 @@ void adcComecoEncadeada(pessoa *&ponteiroEncadeada, string nome, int rg)
     ponteiroEncadeada = novoValor;
 }
 
+void adcFimEncadeada(pessoa *&ponteiroEncadeada, string nome, int rg)
+{
+    // Adiciona novo valor
+    pessoa *novoValor = new pessoa;
+    novoValor->nome = nome;
+    novoValor->rg = rg;
+    novoValor->proximo = NULL;
+
+    // Criar um cursor que é um Ponteiro auxiliar
+    pessoa *p = ponteiroEncadeada;
+
+    while (p != NULL) // Enquanto p for diferente de nulo
+    {
+        if (p->proximo == NULL) //O p próximo for igual a nulo
+        {
+            p->proximo = novoValor; //entao o p próximo vai adicionar no novo valor
+            return; // retorna para parar sem precisar atualizar o cursor, senão ele vai atualizar.
+        }
+        // Atualiza o cursor
+        p = p->proximo;
+    }
+}
+
 int main()
 {
     // Variaveis
@@ -159,6 +182,21 @@ int main()
             break;
         case 2:
             cout << "Funcao escolhida: 2 - Insercao de um Node no fim da lista. \n";
+
+            cout << "Digite o nome: ";
+            cin >> nome;
+            cout << "Digite o RG: ";
+            cin >> rg;
+
+            if (retornaTamanho(ponteiroEncadeada) == 0)
+            {
+                adcComecoEncadeada(ponteiroEncadeada, nome, rg); // se o retorna tamanho for igual a 0 então adicona no começo
+            }
+            else
+            {
+                adcFimEncadeada(ponteiroEncadeada, nome, rg); // se exitir adiciona no final da lista
+            }
+
             break;
         case 3:
             cout << "Funcao escolhida: 3 - Insercao de um Node na posicao N. \n";
