@@ -93,13 +93,54 @@ void adcFimEncadeada(pessoa *&ponteiroEncadeada, string nome, int rg)
 
     while (p != NULL) // Enquanto p for diferente de nulo
     {
-        if (p->proximo == NULL) //O p próximo for igual a nulo
+        if (p->proximo == NULL) // O p próximo for igual a nulo
         {
-            p->proximo = novoValor; //entao o p próximo vai adicionar no novo valor
-            return; // retorna para parar sem precisar atualizar o cursor, senão ele vai atualizar.
+            p->proximo = novoValor; // entao o p próximo vai adicionar no novo valor
+            return;                 // retorna para parar sem precisar atualizar o cursor, senão ele vai atualizar.
         }
         // Atualiza o cursor
         p = p->proximo;
+    }
+}
+
+void adcPosicaoEncadeada(pessoa *&ponteiroEncadeada, string nome, int rg, int posicao)
+{
+    // Adiciona novo valor
+    pessoa *novoValor = new pessoa;
+    novoValor->nome = nome;
+    novoValor->rg = rg;
+    novoValor->proximo = NULL;
+
+    // Criar um cursor que é um Ponteiro auxiliar
+    pessoa *p = ponteiroEncadeada;
+
+    // contador de posições
+    int cont = 0;
+
+    while (cont <= posicao)
+    {
+
+        if(cont == posicao - 1)
+        {
+            //Auxiliar do valor
+            pessoa *aux = new pessoa;
+
+            //Armazena o próximo valor
+            aux->proximo = p->proximo;
+
+            //coloca o novo valor próximo dele
+            p->proximo = novoValor;
+
+            //novo valor aponte para o auxiliar ou seja aponta para o próximo
+            novoValor->proximo = aux->proximo;
+
+            free(aux);
+        }
+
+        // Atualiza o cursor
+        p = p->proximo;
+
+        cont++;
     }
 }
 
@@ -166,7 +207,7 @@ int main()
 
         // Adicinar variáveis
         string nome;
-        int rg;
+        int rg, posicao;
 
         switch (funcaoDesejada)
         {
@@ -200,6 +241,25 @@ int main()
             break;
         case 3:
             cout << "Funcao escolhida: 3 - Insercao de um Node na posicao N. \n";
+            cout << "Digite a posicao que quer inserir: ";
+            cin >> posicao;
+            cout << "Digite o nome: ";
+            cin >> nome;
+            cout << "Digite o RG: ";
+            cin >> rg;
+
+            if (posicao == 0)
+            {
+                adcComecoEncadeada(ponteiroEncadeada, nome, rg);
+            }
+            else if (posicao == retornaTamanho(ponteiroEncadeada) - 1)
+            {
+                adcFimEncadeada(ponteiroEncadeada, nome, rg);
+            }
+            else
+            {
+                adcPosicaoEncadeada(ponteiroEncadeada, nome, rg, posicao);
+            }
 
             break;
         case 4:
