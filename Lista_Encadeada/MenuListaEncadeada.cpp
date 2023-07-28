@@ -134,7 +134,7 @@ void adcPosicaoEncadeada(pessoa *&ponteiroEncadeada, string nome, int rg, int po
             //novo valor aponte para o auxiliar ou seja aponta para o próximo
             novoValor->proximo = aux->proximo;
 
-            free(aux);
+            delete aux;
         }
 
         // Atualiza o cursor
