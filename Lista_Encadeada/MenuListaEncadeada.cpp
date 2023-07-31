@@ -120,18 +120,18 @@ void adcPosicaoEncadeada(pessoa *&ponteiroEncadeada, string nome, int rg, int po
     while (cont <= posicao)
     {
 
-        if(cont == posicao - 1)
+        if (cont == posicao - 1)
         {
-            //Auxiliar do valor
+            // Auxiliar do valor
             pessoa *aux = new pessoa;
 
-            //Armazena o próximo valor
+            // Armazena o próximo valor
             aux->proximo = p->proximo;
 
-            //coloca o novo valor próximo dele
+            // coloca o novo valor próximo dele
             p->proximo = novoValor;
 
-            //novo valor aponte para o auxiliar ou seja aponta para o próximo
+            // novo valor aponte para o auxiliar ou seja aponta para o próximo
             novoValor->proximo = aux->proximo;
 
             delete aux;
@@ -141,6 +141,26 @@ void adcPosicaoEncadeada(pessoa *&ponteiroEncadeada, string nome, int rg, int po
         p = p->proximo;
 
         cont++;
+    }
+}
+
+void removeInicioEncadeada(pessoa *&ponteiroEncadeada)
+{
+
+    if (ponteiroEncadeada->proximo == NULL)
+    {
+        // Adiciona novo valor
+        pessoa *novoValor = new pessoa;
+        novoValor->nome = "";
+        novoValor->rg = 0;
+        novoValor->proximo = NULL;
+
+        ponteiroEncadeada = novoValor;
+    }
+    else
+    {
+        // Faz o ponteiro principal apontar para o próximo valor
+        ponteiroEncadeada = ponteiroEncadeada->proximo;
     }
 }
 
@@ -264,6 +284,8 @@ int main()
             break;
         case 4:
             cout << "Funcao escolhida: 4 - Retirar um Node no inicio da lista. \n";
+
+            removeInicioEncadeada(ponteiroEncadeada);
 
             break;
         case 5:
