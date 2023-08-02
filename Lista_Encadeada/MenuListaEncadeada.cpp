@@ -186,6 +186,40 @@ void removeFimEncadeada(pessoa *&ponteiroEncadeada)
     aux->proximo = NULL;
 }
 
+void removePosicaoEncadeada(pessoa *&ponteiroEncadeada, int posicao)
+{
+    // Criar um cursor que é um Ponteiro auxiliar
+    pessoa *p = ponteiroEncadeada;
+
+    // contador de posições
+    int cont = 0;
+
+    while (cont <= posicao)
+    {
+
+        // Quando chega um antes da posição desejada
+        if (cont == posicao - 1)
+        {
+            // cria um auxiliar
+            pessoa *aux = new pessoa;
+
+            // Auxiliar recebe o elemento que será eliminado
+            aux = p->proximo;
+
+            //faz com que o proximo pule um elemento;
+            p->proximo = aux->proximo;
+
+            delete(aux);
+        }
+
+        // Passa o cursor para o próximo elemento
+        p = p->proximo;
+
+        // Registra uma movimentação
+        cont++;
+    }
+}
+
 int main()
 {
     // Variaveis
@@ -325,6 +359,21 @@ int main()
             break;
         case 6:
             cout << "Funcao escolhida: 6 - Retirar um Node na posicao N. \n";
+            cout << "Digite a posicao que quer deletar: ";
+            cin >> posicao;
+
+            if (posicao == 0)
+            {
+                removeInicioEncadeada(ponteiroEncadeada); // se o retorna tamanho for igual a 1 então remove no começo
+            }
+            else if (posicao == retornaTamanho(ponteiroEncadeada) - 1)
+            {
+                removeFimEncadeada(ponteiroEncadeada); // se exitir remove no final da lista
+            }
+            else
+            {
+                removePosicaoEncadeada(ponteiroEncadeada, posicao);
+            }
 
             break;
         case 7:
