@@ -206,10 +206,10 @@ void removePosicaoEncadeada(pessoa *&ponteiroEncadeada, int posicao)
             // Auxiliar recebe o elemento que será eliminado
             aux = p->proximo;
 
-            //faz com que o proximo pule um elemento;
+            // faz com que o proximo pule um elemento;
             p->proximo = aux->proximo;
 
-            delete(aux);
+            delete (aux);
         }
 
         // Passa o cursor para o próximo elemento
@@ -218,6 +218,33 @@ void removePosicaoEncadeada(pessoa *&ponteiroEncadeada, int posicao)
         // Registra uma movimentação
         cont++;
     }
+}
+
+string retornaNomeEncadeada(pessoa *&ponteiroEncadeada, int rg)
+{
+
+    //Nome a ser retornado
+    string nome = "Nao encontrado";
+
+    // Ponteiro cursor auxiliar
+    pessoa *p = ponteiroEncadeada;
+
+    // Passa pela lista
+    while (p != NULL)
+    {
+        //Quando encontra o rg
+        if (p->rg == rg)
+        {
+            //Recebe o nome do rg encontrado
+            nome = p->nome;
+
+            return nome;
+        }
+        
+        p = p->proximo;
+    }
+
+    return nome;
 }
 
 int main()
@@ -378,6 +405,12 @@ int main()
             break;
         case 7:
             cout << "Funcao escolhida: 7 - Procurar um Node com o campo RG. \n";
+
+            // RG bucado pelo usuário
+            cout << "Digite o RG: ";
+            cin >> rg;
+
+            cout << "\nO nome do RG " << rg << " eh: " << retornaNomeEncadeada(ponteiroEncadeada, rg) << "\n";
 
             break;
         case 8:
