@@ -415,6 +415,8 @@ int main()
             break;
         case 8:
             cout << "Funcao escolhida: 8 - Imprimir lista. \n";
+            
+            imprimeEncadeada(ponteiroEncadeada);
 
             break;
         case 9:
