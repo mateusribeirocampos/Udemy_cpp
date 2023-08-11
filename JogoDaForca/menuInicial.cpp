@@ -1,70 +1,83 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string>
+#include <string> // Inclusão da biblioteca para usar strings
 #include <iostream>
 #include <time.h>
 
 using namespace std;
 
+// Função para limpar a tela do console
 void limpaTela()
 {
     system("cls");
 }
 
+// Função para retornar uma palavra aleatória da lista
 string retornaPalavraAleatoria()
 {
-    // vetor com palavras disponíveis
+    // Vetor com palavras disponíveis
     string palavras[3] = {"Abacaxi", "Manga", "Morango"};
-    int indiceAleatorio = rand() % 3;
+    int indiceAleatorio = rand() % 3; // Gera um índice aleatório de 0 a 2
 
-    //cout << palavras[indiceAleatorio];
-
-    return palavras[indiceAleatorio];
+    return palavras[indiceAleatorio]; // Retorna a palavra aleatória
 }
 
+string retornaPalavraComMascara(string palavra, int tamanhoDaPalavra)
+{
+    int cont = 0;
+    string palavraComMascara;
+
+    while (cont < tamanhoDaPalavra)
+    {
+        palavraComMascara += " _ ";
+        cont++;
+    }
+    return palavraComMascara;
+}
+
+// Função para jogar sozinho
 void jogarSozinho()
 {
+    string palavra = retornaPalavraAleatoria(); // Obtém uma palavra aleatória
 
-    // palavra a ser adivinhada
-    string palavra = retornaPalavraAleatoria();
+    // tamanho a ser adivinhada
+    int tamanhoDaPalavra = palavra.size();
 
-    cout << "A palavra secreta e >>> " << palavra;
+    // Palavra mascarada
+    string palavraComMascara = retornaPalavraComMascara(palavra, tamanhoDaPalavra);
+
+    cout << "A palavra secreta eh >>> " << palavra << " - (tamanho: " << tamanhoDaPalavra << ")"; // Mostra a palavra secreta
+    cout << "\nMascara: " << palavraComMascara;
 }
 
+// Função para exibir o menu inicial
 void menuInicial()
 {
-
-    // Opção escolhida pelo usuário
     int opcao = 0;
 
-    // Enquanto o jogador não digita uma opcao valida o menu aparece novamente
     while (opcao < 1 || opcao > 3)
     {
         limpaTela();
-        cout << "Benvindo ao JOGO";
+        cout << "Bem-vindo ao JOGO";
         cout << "\n1 - Jogar";
         cout << "\n2 - Sobre";
         cout << "\n3 - Sair";
         cout << "\nEscolha uma opcao e tecle ENTER: ";
+        cin >> opcao; // Lê a opção escolhida
 
-        // Faz a leitura da opcao escolhida
-        cin >> opcao;
-
-        // Faz de acordo com a opção escolhida
         switch (opcao)
         {
         case 1:
             cout << "JOGO INICIADO" << endl;
             cout << "\n";
-            jogarSozinho();
+            jogarSozinho(); // Inicia o jogo
             break;
         case 2:
-            // Mostra informação do jogo
-            cout << "Informacoes do jogo";
+            cout << "Informacoes do jogo"; // Exibe informações sobre o jogo
             break;
         case 3:
             cout << " <==== Ate mais ====> ";
-            exit(0);
+            exit(0); // Sai do programa
             break;
         }
     }
@@ -72,9 +85,8 @@ void menuInicial()
 
 int main()
 {
-    // Para gerar numero aletório
-    srand(time(NULL));
+    srand(time(NULL)); // Inicializa o gerador de números aleatórios
 
-    menuInicial();
+    menuInicial(); // Exibe o menu inicial
     return 0;
 }
