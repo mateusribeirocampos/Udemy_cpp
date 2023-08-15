@@ -26,6 +26,7 @@ string retornaPalavraComMascara(string palavra, int tamanhoDaPalavra)
 {
     int cont = 0;
     string palavraComMascara;
+    palavra = "";
 
     while (cont < tamanhoDaPalavra)
     {
@@ -33,6 +34,13 @@ string retornaPalavraComMascara(string palavra, int tamanhoDaPalavra)
         cont++;
     }
     return palavraComMascara;
+}
+
+void exibeStatus(string palavraComMascara, int tamanhoDaPalavra, int tentativasRestantes)
+{
+    // cout << "A palavra secreta eh >>> " << palavra << " - (tamanho: " << tamanhoDaPalavra << ")"; // Mostra a palavra secreta
+    cout << "Palavra: " << palavraComMascara << " => (tamanho: " << tamanhoDaPalavra << ")";
+    cout << "\nTentativas restantes: " << tentativasRestantes;
 }
 
 // Função para jogar sozinho
@@ -46,8 +54,23 @@ void jogarSozinho()
     // Palavra mascarada
     string palavraComMascara = retornaPalavraComMascara(palavra, tamanhoDaPalavra);
 
-    cout << "A palavra secreta eh >>> " << palavra << " - (tamanho: " << tamanhoDaPalavra << ")"; // Mostra a palavra secreta
-    cout << "\nMascara: " << palavraComMascara;
+    int tentativas = 0, maximoDeTentativas = tamanhoDaPalavra;
+    char letra;
+
+    while (maximoDeTentativas - tentativas > 0)
+    {
+        limpaTela();
+
+        //Exibe o estatus atual do jogo
+        exibeStatus(palavraComMascara, tamanhoDaPalavra, maximoDeTentativas - tentativas);
+
+        // Lê um palpite
+        cout << "\nDigite uma letra: ";
+        cin >> letra;
+
+        // Aumenta uma tentativa realizada
+        tentativas++;
+    }
 }
 
 // Função para exibir o menu inicial
@@ -68,7 +91,7 @@ void menuInicial()
         switch (opcao)
         {
         case 1:
-            cout << "JOGO INICIADO" << endl;
+            cout << "JOGO INICIADO";
             cout << "\n";
             jogarSozinho(); // Inicia o jogo
             break;
