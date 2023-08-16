@@ -30,7 +30,7 @@ string retornaPalavraComMascara(string palavra, int tamanhoDaPalavra)
 
     while (cont < tamanhoDaPalavra)
     {
-        palavraComMascara += " _ ";
+        palavraComMascara += "_";
         cont++;
     }
     return palavraComMascara;
@@ -54,23 +54,47 @@ void jogarSozinho()
     // Palavra mascarada
     string palavraComMascara = retornaPalavraComMascara(palavra, tamanhoDaPalavra);
 
-    int tentativas = 0, maximoDeTentativas = tamanhoDaPalavra;
+    // Variáveis gerais
+    int tentativas = 0, maximoDeTentativas = tamanhoDaPalavra; // Número de tentativas igual ao tamanho da palavra
+    int cont;                                                  // Percorrer a palavra
     char letra;
 
     while (maximoDeTentativas - tentativas > 0)
     {
         limpaTela();
 
-        //Exibe o estatus atual do jogo
+        // Exibe o estatus atual do jogo
         exibeStatus(palavraComMascara, tamanhoDaPalavra, maximoDeTentativas - tentativas);
 
         // Lê um palpite
         cout << "\nDigite uma letra: ";
         cin >> letra;
 
+        // Percorre a palavra real e se a letra existir muda a plavvarComMascara
+        for (cont = 0; cont < tamanhoDaPalavra; cont++)
+        {
+            // se a letra existir na palavra escondida
+            if (palavra[cont] == letra)
+            {
+                // faz aquela letra aparecer na palavraComMascara
+                palavraComMascara[cont] = palavra[cont];
+            }
+        }
+
         // Aumenta uma tentativa realizada
         tentativas++;
     }
+    if (palavra == palavraComMascara)
+    {
+        limpaTela();
+        cout << "\n====== PARABENS =======\nVocE Venceu!!!";
+    } else
+    {
+        limpaTela();
+        cout << "Acabaram suas tentativas :-(\nVocE Perdeu!!!";
+    }
+    
+    
 }
 
 // Função para exibir o menu inicial
@@ -91,8 +115,7 @@ void menuInicial()
         switch (opcao)
         {
         case 1:
-            cout << "JOGO INICIADO";
-            cout << "\n";
+            cout << "JOGO INICIADO" << endl;
             jogarSozinho(); // Inicia o jogo
             break;
         case 2:
