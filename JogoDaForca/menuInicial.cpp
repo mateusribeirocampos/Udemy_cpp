@@ -16,7 +16,7 @@ void limpaTela()
 string retornaPalavraAleatoria()
 {
     // Vetor com palavras disponíveis
-    string palavras[3] = {"Abacaxi", "Manga", "Morango"};
+    string palavras[3] = {"abacaxi", "manga", "morango"};
     int indiceAleatorio = rand() % 3; // Gera um índice aleatório de 0 a 2
 
     return palavras[indiceAleatorio]; // Retorna a palavra aleatória
@@ -36,11 +36,19 @@ string retornaPalavraComMascara(string palavra, int tamanhoDaPalavra)
     return palavraComMascara;
 }
 
-void exibeStatus(string palavraComMascara, int tamanhoDaPalavra, int tentativasRestantes)
+void exibeStatus(string palavraComMascara, int tamanhoDaPalavra, int tentativasRestantes, string letrasJaArriscadas)
 {
     // cout << "A palavra secreta eh >>> " << palavra << " - (tamanho: " << tamanhoDaPalavra << ")"; // Mostra a palavra secreta
     cout << "Palavra: " << palavraComMascara << " => (tamanho: " << tamanhoDaPalavra << ")";
     cout << "\nTentativas restantes: " << tentativasRestantes;
+
+    // Exibe as letras arriscadas
+    // int cont;
+    cout << "\nLetras arriscadas: ";
+    for (std::__cxx11::basic_string<char>::size_type cont = 0; cont < letrasJaArriscadas.size(); cont++)
+    {
+        cout << letrasJaArriscadas[cont] << ", ";
+    }
 }
 
 // Função para jogar sozinho
@@ -57,44 +65,62 @@ void jogarSozinho()
     // Variáveis gerais
     int tentativas = 0, maximoDeTentativas = tamanhoDaPalavra; // Número de tentativas igual ao tamanho da palavra
     int cont;                                                  // Percorrer a palavra
-    char letra;
+    char letra;                                                // letra arriscad a pelo usuário
+    string letrasJaArriscadas;                                 // vetor de char
+    bool jaDigitouLetra = false;                               // Auxiliar para saber se a letra já foi digitada
 
     while (maximoDeTentativas - tentativas > 0)
     {
-        limpaTela();
+        // limpaTela();
 
         // Exibe o estatus atual do jogo
-        exibeStatus(palavraComMascara, tamanhoDaPalavra, maximoDeTentativas - tentativas);
+        exibeStatus(palavraComMascara, tamanhoDaPalavra, maximoDeTentativas - tentativas, letrasJaArriscadas);
 
         // Lê um palpite
         cout << "\nDigite uma letra: ";
         cin >> letra;
 
-        // Percorre a palavra real e se a letra existir muda a plavvarComMascara
-        for (cont = 0; cont < tamanhoDaPalavra; cont++)
+        // Percorre as letras já arriscadas
+        for (cont = 0; cont < tentativas; cont++)
         {
-            // se a letra existir na palavra escondida
-            if (palavra[cont] == letra)
+            // Se a letra for encontrada
+            if (letrasJaArriscadas[cont] == letra)
             {
-                // faz aquela letra aparecer na palavraComMascara
-                palavraComMascara[cont] = palavra[cont];
+                cout << "\nEssa letra jA foi digitada!\n";
+                // indica com a variável booleana
+                jaDigitouLetra = true;
             }
         }
 
-        // Aumenta uma tentativa realizada
-        tentativas++;
+        if (jaDigitouLetra == false)
+        {
+            letrasJaArriscadas += letra;
+
+            // Percorre a palavra real e se a letra existir muda a plavvarComMascara
+            for (cont = 0; cont < tamanhoDaPalavra; cont++)
+            {
+                // se a letra existir na palavra escondida
+                if (palavra[cont] == letra)
+                {
+                    // faz aquela letra aparecer na palavraComMascara
+                    palavraComMascara[cont] = palavra[cont];
+                }
+            }
+            // Aumenta uma tentativa realizada
+            tentativas++;
+        }
     }
+
     if (palavra == palavraComMascara)
     {
         limpaTela();
         cout << "\n====== PARABENS =======\nVocE Venceu!!!";
-    } else
+    }
+    else
     {
         limpaTela();
         cout << "Acabaram suas tentativas :-(\nVocE Perdeu!!!";
     }
-    
-    
 }
 
 // Função para exibir o menu inicial
