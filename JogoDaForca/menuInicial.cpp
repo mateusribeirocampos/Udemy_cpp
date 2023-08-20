@@ -95,7 +95,7 @@ int jogar(int numeroDeJogadores)
 
         // Lê um palpite
         //cout << "\n\nOu digite 1 para arricar a palavra\nObs: Se errar a palavra inteira perde o jogo!";
-        cout << "\nDigite uma letra [Ou digite 1 para arriscar a palavra!]\n>>>";
+        cout << "\nDigite uma letra [Ou digite 1 para arriscar a palavra!]\n>>> ";
         cin >> letra;
 
         // Se digitar 1 deixa o usuário arriscar a palavra inteira
