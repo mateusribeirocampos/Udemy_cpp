@@ -9,6 +9,45 @@ void limpaTela()
     system("cls");
 }
 
+void iniciaTabuleiro(char tabuleiro[10][10])
+{
+    int linha, coluna;
+    for (linha = 0; linha < 10; linha++)
+    {
+        for (coluna = 0; coluna < 10; coluna++)
+        {
+            tabuleiro[linha][coluna] = 'A';
+        }
+    }
+}
+
+void exibeTabuleiro(char tabuleiro[10][10])
+{
+    int linha, coluna;
+    // Imprime o tabuleiro
+    for (linha = 0; linha < 10; linha++)
+    {
+        for (coluna = 0; coluna < 10; coluna++)
+        {
+            cout << " " << tabuleiro[linha][coluna];
+        }
+        cout << "\n";
+    }
+}
+
+void jogo()
+{
+
+    /// Variáveis gerais
+    char tabuleiro[10][10];
+
+    // inica o tabuleiro com água
+    iniciaTabuleiro(tabuleiro);
+
+    // exibe o tabuleiro
+    exibeTabuleiro(tabuleiro);
+}
+
 void menuInicial()
 {
     int opcao = 0;
@@ -28,6 +67,7 @@ void menuInicial()
         {
         case 1:
             cout << "\nVocE escolheu a opcao jogar\n";
+            jogo();
             break;
         case 2:
             cout << "\nSobre o Jogo\n";
