@@ -9,7 +9,7 @@ void limpaTela()
     system("cls");
 }
 
-void iniciaTabuleiro(char tabuleiro[10][10])
+void iniciaTabuleiro(char tabuleiro[10][10], char mascara[10][10])
 {
     int linha, coluna;
     for (linha = 0; linha < 10; linha++)
@@ -17,11 +17,12 @@ void iniciaTabuleiro(char tabuleiro[10][10])
         for (coluna = 0; coluna < 10; coluna++)
         {
             tabuleiro[linha][coluna] = 'A';
+            mascara[linha][coluna] = '*';
         }
     }
 }
 
-void exibeTabuleiro(char tabuleiro[10][10])
+void exibeTabuleiro(char tabuleiro[10][10], char mascara[10][10])
 {
     int linha, coluna;
     // Imprime o tabuleiro
@@ -29,7 +30,8 @@ void exibeTabuleiro(char tabuleiro[10][10])
     {
         for (coluna = 0; coluna < 10; coluna++)
         {
-            cout << " " << tabuleiro[linha][coluna];
+            //cout << " " << tabuleiro[linha][coluna];
+            cout << " " << mascara[linha][coluna];
         }
         cout << "\n";
     }
@@ -39,13 +41,34 @@ void jogo()
 {
 
     /// Variáveis gerais
-    char tabuleiro[10][10];
+    char tabuleiro[10][10]; // tabuleiro
+    char mascara[10][10];   // mascara que irá esconder o tabuleiro
+
+    // posição escolhida pelo jogador
+    int linhaJogada, colunaJogada;
+
+    // loop para estado do jogo
+    int estadoDeJogo = 1;
 
     // inica o tabuleiro com água
-    iniciaTabuleiro(tabuleiro);
+    iniciaTabuleiro(tabuleiro, mascara);
 
-    // exibe o tabuleiro
-    exibeTabuleiro(tabuleiro);
+    //Estado do jogo em looping
+    while (estadoDeJogo == 1)
+    {
+        limpaTela();
+
+        // exibe o tabuleiro
+        exibeTabuleiro(tabuleiro, mascara);
+
+        cout << "Digite uma linha: ";
+        cin >> linhaJogada;
+        cout << "Digite uma coluna: ";
+        cin >> colunaJogada;
+
+        //revela o que está no tabuleiro
+        mascara[linhaJogada][colunaJogada] = tabuleiro[linhaJogada][colunaJogada];
+    }
 }
 
 void menuInicial()
