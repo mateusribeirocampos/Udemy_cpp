@@ -257,7 +257,7 @@ void menuInicial()
 
 int main()
 {
-    srand(time(NULL)); // Inicializa o gerador de números aleatórios
+    srand((unsigned)time(NULL)); // Inicializa o gerador de números aleatórios
 
     menuInicial(); // Exibe o menu inicial
     return 0;

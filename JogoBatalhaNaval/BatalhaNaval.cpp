@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include <string>
+#include <time.h>
 using namespace std;
 
 void limpaTela()
@@ -25,16 +26,58 @@ void iniciaTabuleiro(char tabuleiro[10][10], char mascara[10][10])
 void exibeTabuleiro(char tabuleiro[10][10], char mascara[10][10])
 {
     int linha, coluna;
+    // Imprime o mascara
+    for (linha = 0; linha < 10; linha++)
+    {
+        for (coluna = 0; coluna < 10; coluna++)
+        {
+            // cout << " " << tabuleiro[linha][coluna];
+            cout << "  " << mascara[linha][coluna];
+        }
+        cout << "\n";
+    }
+
+    cout << "\n";
     // Imprime o tabuleiro
     for (linha = 0; linha < 10; linha++)
     {
         for (coluna = 0; coluna < 10; coluna++)
         {
-            //cout << " " << tabuleiro[linha][coluna];
-            cout << " " << mascara[linha][coluna];
+            cout << "  " << tabuleiro[linha][coluna];
         }
         cout << "\n";
     }
+}
+
+void posicionaBarcos(char tabuleiro[10][10])
+{
+    // coloca 10 barcos no tabuleiro
+    int cont, linhaAleatoria, colunaAleatoria, quantidade = 10, quantidadePosicionada = 0;
+
+    // Verifica se ja posicionou todos os barcos
+    while (quantidadePosicionada < quantidade)
+    {
+        for (cont = 0; cont < quantidade; cont++)
+        {
+            // Gera linha randômica de 0 a 9 de barcos
+            linhaAleatoria = rand() % 10;
+            // Gera linha randômica de 0 a 9 de barcos
+            colunaAleatoria = rand() % 10;
+
+            if (tabuleiro[linhaAleatoria][colunaAleatoria] = 'A')
+            {
+                // Posiciona 10 barcos aleatória no tabuleiro
+                tabuleiro[linhaAleatoria][colunaAleatoria] = 'P';
+                // Aumenta a quantidade barcos posicionada
+                quantidadePosicionada++;
+            }
+        }
+    }
+
+    // tabuleiro[0][0] = 'P';
+    // tabuleiro[2][0] = 'P';
+    // tabuleiro[5][5] = 'P';
+    // tabuleiro[6][7] = 'P';
 }
 
 void jogo()
@@ -50,10 +93,16 @@ void jogo()
     // loop para estado do jogo
     int estadoDeJogo = 1;
 
+    // Variável para contar pontos
+    int pontos = 0;
+
     // inica o tabuleiro com água
     iniciaTabuleiro(tabuleiro, mascara);
 
-    //Estado do jogo em looping
+    // posiciona barcos aleatoriamente
+    posicionaBarcos(tabuleiro);
+
+    // Estado do jogo em looping
     while (estadoDeJogo == 1)
     {
         limpaTela();
@@ -61,12 +110,19 @@ void jogo()
         // exibe o tabuleiro
         exibeTabuleiro(tabuleiro, mascara);
 
-        cout << "Digite uma linha: ";
+        cout << "\nPontos: " << pontos;
+
+        cout << "\nDigite uma linha: ";
         cin >> linhaJogada;
         cout << "Digite uma coluna: ";
         cin >> colunaJogada;
 
-        //revela o que está no tabuleiro
+        if (tabuleiro[linhaJogada][colunaJogada] == 'P')
+        {
+            pontos = pontos + 10;
+        }
+
+        // revela o que está no tabuleiro
         mascara[linhaJogada][colunaJogada] = tabuleiro[linhaJogada][colunaJogada];
     }
 }
@@ -132,6 +188,9 @@ void menuInicial()
 
 int main()
 {
+
+    // Inicializa o gerador de números aleatórios
+    srand((unsigned)time(NULL));
 
     menuInicial();
 
