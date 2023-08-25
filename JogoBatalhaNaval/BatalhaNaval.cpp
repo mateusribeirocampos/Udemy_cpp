@@ -113,6 +113,9 @@ void jogo()
     // Variável para contar pontos
     int pontos = 0;
 
+    //Variável para cuidar do número de tentativa para o jogador!
+    int tentativas = 0, maximoTentativas = 5;
+
     //Variável para mensagem de feedback para o jogador
     string menssagem = "Bem vindo ao JOGO";
 
@@ -123,14 +126,14 @@ void jogo()
     posicionaBarcos(tabuleiro);
 
     // Estado do jogo em looping
-    while (estadoDeJogo == 1)
+    while (tentativas < maximoTentativas)
     {
         limpaTela();
 
         // exibe o tabuleiro
         exibeTabuleiro(tabuleiro, mascara);
 
-        cout << "\nPontos: " << pontos;
+        cout << "\nPontos: " << pontos << ", tentativas restantes: " << maximoTentativas - tentativas;
         cout << "\n" << menssagem;
 
         cout << "\nDigite uma linha: ";
@@ -138,10 +141,13 @@ void jogo()
         cout << "Digite uma coluna: ";
         cin >> colunaJogada;
 
+        //Verifica o que aconteceu
         verificaTiro(tabuleiro, linhaJogada, colunaJogada, &pontos, &menssagem);
 
         // revela o que está no tabuleiro
         mascara[linhaJogada][colunaJogada] = tabuleiro[linhaJogada][colunaJogada];
+
+        tentativas++;
     }
 }
 
