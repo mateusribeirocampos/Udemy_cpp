@@ -5,6 +5,9 @@
 #include <time.h>
 using namespace std;
 
+// Cabeçalhos de funções
+void menuInicial();
+
 void limpaTela()
 {
     system("cls");
@@ -64,7 +67,7 @@ void posicionaBarcos(char tabuleiro[10][10])
             // Gera linha randômica de 0 a 9 de barcos
             colunaAleatoria = rand() % 10;
 
-            if (tabuleiro[linhaAleatoria][colunaAleatoria] = 'A')
+            if (tabuleiro[linhaAleatoria][colunaAleatoria] == 'A')
             {
                 // Posiciona 10 barcos aleatória no tabuleiro
                 tabuleiro[linhaAleatoria][colunaAleatoria] = 'P';
@@ -108,16 +111,19 @@ void jogo()
     int linhaJogada, colunaJogada;
 
     // loop para estado do jogo
-    int estadoDeJogo = 1;
+    // int estadoDeJogo = 1;
 
     // Variável para contar pontos
     int pontos = 0;
 
-    //Variável para cuidar do número de tentativa para o jogador!
+    // Variável para cuidar do número de tentativa para o jogador!
     int tentativas = 0, maximoTentativas = 5;
 
-    //Variável para mensagem de feedback para o jogador
+    // Variável para mensagem de feedback para o jogador
     string menssagem = "Bem vindo ao JOGO";
+
+    // Opcao de reinicio do jogo
+    int opcao;
 
     // inica o tabuleiro com água
     iniciaTabuleiro(tabuleiro, mascara);
@@ -134,20 +140,43 @@ void jogo()
         exibeTabuleiro(tabuleiro, mascara);
 
         cout << "\nPontos: " << pontos << ", tentativas restantes: " << maximoTentativas - tentativas;
-        cout << "\n" << menssagem;
+        cout << "\n"
+             << menssagem;
 
         cout << "\nDigite uma linha: ";
         cin >> linhaJogada;
         cout << "Digite uma coluna: ";
         cin >> colunaJogada;
 
-        //Verifica o que aconteceu
+        // Verifica o que aconteceu
         verificaTiro(tabuleiro, linhaJogada, colunaJogada, &pontos, &menssagem);
 
         // revela o que está no tabuleiro
         mascara[linhaJogada][colunaJogada] = tabuleiro[linhaJogada][colunaJogada];
 
         tentativas++;
+    }
+
+    cout << "\nFim do JOGO, o que deseja fazer? ";
+    cout << "\n1 - Jogar novamente";
+    cout << "\n2 - Ir para o Menu";
+    cout << "\n3 - Sair do jogo";
+    cout << "Digite o que deseja fazer: ";
+    cin >> opcao;
+
+    limpaTela();
+
+    switch (opcao)
+    {
+    case 1:
+        jogo();
+        break;
+    case 2:
+        menuInicial();
+        break;
+    case 3:
+        cout << "\n <<<<< Vejo vocE em breve, CAPITAO! >>>> \n";
+        break;
     }
 }
 
@@ -201,6 +230,10 @@ void menuInicial()
             if (opcao == 1)
             {
                 menuInicial();
+            }
+            else
+            {
+                cout << "\n <<<<< Vejo vocE em breve, CAPITAO! >>>> \n";
             }
             break;
         case 3:
