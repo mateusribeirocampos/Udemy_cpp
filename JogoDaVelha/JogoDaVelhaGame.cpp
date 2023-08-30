@@ -54,15 +54,20 @@ void jogo()
     // Turno do jogado
     int turnoDoJogador = 1;
 
+    // Quantas vezes os jogadores jogaram
+    int rodada = 0;
+
     // Coloca os '-' no tabuleiro
     iniciaTabuleiro(tabuleiro);
 
-    while (estadoDeJogo == 1)
+    while (rodada < 9)
     {
         limpaTela();
 
         // exibe o tabuleiro na tela
         exibeTabuleiro(tabuleiro);
+
+        cout << "\nRodada: " << rodada << "\n";
 
         // lê a posição desejada
         cout << "\nJogador, digite uma linha: ";
@@ -81,6 +86,8 @@ void jogo()
             tabuleiro[linhaJogada][colunaJogada] = 'O';
             turnoDoJogador = 1;
         }
+        // Aumenta uma rodada
+        rodada++;
     }
 }
 
