@@ -93,30 +93,30 @@ void jogo()
         // Confere as linhas
         for (linhas = 0; linhas < 3; linhas++)
         {
-            if (tabuleiro[linhas][0] == 'X' && tabuleiro[linhas][0] && tabuleiro[linhas][1] && tabuleiro[linhas][1] == tabuleiro[linhas][2])
+            if (tabuleiro[linhas][0] == 'X' && tabuleiro[linhas][0] == tabuleiro[linhas][1] && tabuleiro[linhas][1] == tabuleiro[linhas][2])
             {
                 estadoDeJogo = 0;
-                cout << "O jagador X venceu!";
+                cout << "O jogador X venceu!";
             }
-            else if (tabuleiro[linhas][0] == 'O' && tabuleiro[linhas][0] && tabuleiro[linhas][1] && tabuleiro[linhas][1] == tabuleiro[linhas][2])
+            else if (tabuleiro[linhas][0] == 'O' && tabuleiro[linhas][0] == tabuleiro[linhas][1] && tabuleiro[linhas][1] == tabuleiro[linhas][2])
             {
                 estadoDeJogo = 0;
-                cout << "O jagador O venceu!";
+                cout << "O jogador O venceu!";
             }
         }
 
         // Confere as colunas
         for (colunas = 0; colunas < 3; colunas++)
         {
-            if (tabuleiro[0][colunas] == 'X' && tabuleiro[0][colunas] && tabuleiro[1][colunas] && tabuleiro[1][colunas] == tabuleiro[2][colunas])
+            if (tabuleiro[0][colunas] == 'X' && tabuleiro[0][colunas] == tabuleiro[1][colunas] && tabuleiro[1][colunas] == tabuleiro[2][colunas])
             {
                 estadoDeJogo = 0;
-                cout << "O jagador X venceu!";
+                cout << "O jogador X venceu!";
             }
-            else if (tabuleiro[0][colunas] == 'O' && tabuleiro[0][colunas] && tabuleiro[1][colunas] && tabuleiro[1][colunas] == tabuleiro[2][colunas])
+            else if (tabuleiro[0][colunas] == 'O' && tabuleiro[0][colunas] == tabuleiro[1][colunas] && tabuleiro[1][colunas] == tabuleiro[2][colunas])
             {
                 estadoDeJogo = 0;
-                cout << "O jagador O venceu!";
+                cout << "O jogador O venceu!";
             }
         }
 
