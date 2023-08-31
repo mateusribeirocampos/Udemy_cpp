@@ -39,6 +39,65 @@ void exibeTabuleiro(char tabuleiro[3][3])
     }
 }
 
+// 1 - X venceu , 2 - O venceu e 0 - ninguem venceu
+int confereTabuleiro(char tabuleiro[3][3])
+{
+
+    int linhas, colunas;
+
+    // Confere as linhas
+    for (linhas = 0; linhas < 3; linhas++)
+    {
+        if (tabuleiro[linhas][0] == 'X' && tabuleiro[linhas][0] == tabuleiro[linhas][1] && tabuleiro[linhas][1] == tabuleiro[linhas][2])
+        {
+            return 1;
+        }
+        else if (tabuleiro[linhas][0] == 'O' && tabuleiro[linhas][0] == tabuleiro[linhas][1] && tabuleiro[linhas][1] == tabuleiro[linhas][2])
+        {
+            return 2;
+        }
+    }
+
+    // Confere as colunas
+    for (colunas = 0; colunas < 3; colunas++)
+    {
+        if (tabuleiro[0][colunas] == 'X' && tabuleiro[0][colunas] == tabuleiro[1][colunas] && tabuleiro[1][colunas] == tabuleiro[2][colunas])
+        {
+            return 1;
+        }
+        else if (tabuleiro[0][colunas] == 'O' && tabuleiro[0][colunas] == tabuleiro[1][colunas] && tabuleiro[1][colunas] == tabuleiro[2][colunas])
+        {
+            return 2;
+        }
+    }
+
+    // Verifica a diagonal principal
+    if (tabuleiro[0][0] != '-' && tabuleiro[0][0] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][2])
+    {
+        if (tabuleiro[0][0] == 'X')
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+    // Verifica a diagonal secundária
+    if (tabuleiro[0][2] != '-' && tabuleiro[0][2] == tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[2][0])
+    {
+        if (tabuleiro[0][2] == 'X')
+        {
+            return 1;
+        }
+        else
+        {
+            return 2;
+        }
+    }
+    return 0;
+}
+
 void jogo()
 {
     // Variáveis gerais
@@ -46,7 +105,7 @@ void jogo()
     char tabuleiro[3][3];
 
     // Auxiliares para o tabuleiro
-    int linhas, colunas;
+    // int linhas, colunas;
 
     // pede ao usuário inserir linha e coluna com essas variáveis
     int linhaJogada, colunaJogada;
@@ -90,53 +149,17 @@ void jogo()
             turnoDoJogador = 1;
         }
 
-        // Confere as linhas
-        for (linhas = 0; linhas < 3; linhas++)
+        // Confere se o jogo acabou
+        if (confereTabuleiro(tabuleiro) == 1)
         {
-            if (tabuleiro[linhas][0] == 'X' && tabuleiro[linhas][0] == tabuleiro[linhas][1] && tabuleiro[linhas][1] == tabuleiro[linhas][2])
-            {
-                estadoDeJogo = 0;
-                cout << "O jogador X venceu!";
-            }
-            else if (tabuleiro[linhas][0] == 'O' && tabuleiro[linhas][0] == tabuleiro[linhas][1] && tabuleiro[linhas][1] == tabuleiro[linhas][2])
-            {
-                estadoDeJogo = 0;
-                cout << "O jogador O venceu!";
-            }
-        }
-
-        // Confere as colunas
-        for (colunas = 0; colunas < 3; colunas++)
-        {
-            if (tabuleiro[0][colunas] == 'X' && tabuleiro[0][colunas] == tabuleiro[1][colunas] && tabuleiro[1][colunas] == tabuleiro[2][colunas])
-            {
-                estadoDeJogo = 0;
-                cout << "O jogador X venceu!";
-            }
-            else if (tabuleiro[0][colunas] == 'O' && tabuleiro[0][colunas] == tabuleiro[1][colunas] && tabuleiro[1][colunas] == tabuleiro[2][colunas])
-            {
-                estadoDeJogo = 0;
-                cout << "O jogador O venceu!";
-            }
-        }
-
-        /*// Confere se o jogo acabou
-        if (tabuleiro[0][0] == 'X' && tabuleiro[0][0] && tabuleiro[0][1] && tabuleiro[0][1] == tabuleiro[0][2])
-        {
+            cout << "O jogador X venceu!!!";
             estadoDeJogo = 0;
-            cout << "O jagador X venceu!";
         }
-        if (tabuleiro[1][0] == 'X' && tabuleiro[1][0] && tabuleiro[1][1] && tabuleiro[1][1] == tabuleiro[1][2])
+        else if (confereTabuleiro(tabuleiro) == 2)
         {
+            cout << "O jogador O venceu!!!";
             estadoDeJogo = 0;
-            cout << "O jagador X venceu!";
         }
-        if (tabuleiro[2][0] == 'X' && tabuleiro[2][0] && tabuleiro[2][1] && tabuleiro[2][1] == tabuleiro[2][2])
-        {
-            estadoDeJogo = 0;
-            cout << "O jagador X venceu!";
-        }*/
-
         // Aumenta uma rodada
         rodada++;
     }
