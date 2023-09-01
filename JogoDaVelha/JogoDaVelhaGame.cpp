@@ -104,6 +104,9 @@ void jogo()
     //  tabuleiro do jogo
     char tabuleiro[3][3];
 
+    // Nome dos jogadores
+    string nomeDoJogadorUm, nomeDoJogadordois, nomeDoJogadorAtual;
+
     // Auxiliares para o tabuleiro
     // int linhas, colunas;
 
@@ -122,6 +125,11 @@ void jogo()
     // Coloca os '-' no tabuleiro
     iniciaTabuleiro(tabuleiro);
 
+    cout << nomeDoJogadorAtual << "\nDigite o nome do jogador 1: ";
+    cin >> nomeDoJogadorUm;
+    cout << nomeDoJogadorAtual << "\nDigite o nome do Jogador 2: ";
+    cin >> nomeDoJogadordois;
+
     while (rodada < 9 && estadoDeJogo == 1)
     {
         limpaTela();
@@ -131,10 +139,20 @@ void jogo()
 
         cout << "\nRodada: " << rodada << "\n";
 
+        // Atualiza o nome do jogador atual
+        if (turnoDoJogador == 1)
+        {
+            nomeDoJogadorAtual = nomeDoJogadorUm;
+        }
+        else
+        {
+            nomeDoJogadorAtual = nomeDoJogadordois;
+        }
+
         // lê a posição desejada
-        cout << "\nJogador, digite uma linha: ";
+        cout << nomeDoJogadorAtual << ", digite uma linha: ";
         cin >> linhaJogada;
-        cout << "\nJogador, digite uma coluna: ";
+        cout << nomeDoJogadorAtual << ", digite uma coluna: ";
         cin >> colunaJogada;
 
         // Verifica de quem é a vez para posicionar o marcador
@@ -152,12 +170,12 @@ void jogo()
         // Confere se o jogo acabou
         if (confereTabuleiro(tabuleiro) == 1)
         {
-            cout << "O jogador X venceu!!!";
+            cout << "O jogador "<< nomeDoJogadorUm<< " venceu!!!";
             estadoDeJogo = 0;
         }
         else if (confereTabuleiro(tabuleiro) == 2)
         {
-            cout << "O jogador O venceu!!!";
+            cout << "O jogador "<< nomeDoJogadordois << " venceu!!!";
             estadoDeJogo = 0;
         }
         // Aumenta uma rodada
