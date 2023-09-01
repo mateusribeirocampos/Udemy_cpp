@@ -3,6 +3,8 @@
 #include <stdlib.h>
 using namespace std;
 
+void menuInicial();
+
 void limpaTela()
 {
     system("cls");
@@ -98,14 +100,14 @@ int confereTabuleiro(char tabuleiro[3][3])
     return 0;
 }
 
-void jogo()
+void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogadorAtual)
 {
     // Variáveis gerais
     //  tabuleiro do jogo
     char tabuleiro[3][3];
 
     // Nome dos jogadores
-    string nomeDoJogadorUm, nomeDoJogadordois, nomeDoJogadorAtual;
+    //string nomeDoJogadorUm, nomeDoJogadorDois, nomeDoJogadorAtual;
 
     // Auxiliares para o tabuleiro
     // int linhas, colunas;
@@ -122,13 +124,11 @@ void jogo()
     // Quantas vezes os jogadores jogaram
     int rodada = 0;
 
+    // Opção para reiniciar o jogo
+    int opcao;
+
     // Coloca os '-' no tabuleiro
     iniciaTabuleiro(tabuleiro);
-
-    cout << nomeDoJogadorAtual << "\nDigite o nome do jogador 1: ";
-    cin >> nomeDoJogadorUm;
-    cout << nomeDoJogadorAtual << "\nDigite o nome do Jogador 2: ";
-    cin >> nomeDoJogadordois;
 
     while (rodada < 9 && estadoDeJogo == 1)
     {
@@ -146,7 +146,7 @@ void jogo()
         }
         else
         {
-            nomeDoJogadorAtual = nomeDoJogadordois;
+            nomeDoJogadorAtual = nomeDoJogadorDois;
         }
 
         // lê a posição desejada
@@ -170,25 +170,47 @@ void jogo()
         // Confere se o jogo acabou
         if (confereTabuleiro(tabuleiro) == 1)
         {
-            cout << "O jogador "<< nomeDoJogadorUm<< " venceu!!!";
+            cout << "O jogador " << nomeDoJogadorUm << " venceu!!!";
             estadoDeJogo = 0;
         }
         else if (confereTabuleiro(tabuleiro) == 2)
         {
-            cout << "O jogador "<< nomeDoJogadordois << " venceu!!!";
+            cout << "O jogador " << nomeDoJogadorDois << " venceu!!!";
             estadoDeJogo = 0;
         }
         // Aumenta uma rodada
         rodada++;
     }
     exibeTabuleiro(tabuleiro);
-    cout << "Fim de Jogo!!!";
+
+    cout << "\nFim do JOGO, o que deseja fazer? ";
+    cout << "\n1 - Jogar novamente";
+    cout << "\n2 - Ir para o Menu";
+    cout << "\n3 - Sair do jogo";
+    cout << "\nDigite o que deseja fazer: ";
+    cin >> opcao;
+
+    limpaTela();
+
+    switch (opcao)
+    {
+    case 1:
+        jogo(nomeDoJogadorUm, nomeDoJogadorDois, nomeDoJogadorAtual);
+        break;
+    case 2:
+        menuInicial();
+        break;
+    case 3:
+        cout << "\n <<<<< Vejo vocE em breve!!! >>>> \n";
+        break;
+    }
 }
 
 void menuInicial()
 {
 
     int opcao;
+    string nomeDoJogadorAtual, nomeDoJogadorUm, nomeDoJogadorDois;
 
     while (opcao < 1 || opcao > 3)
     {
@@ -205,7 +227,11 @@ void menuInicial()
         {
         case 1:
             cout << "VocE escolheu a opcao jogar!\nBoa sorte!!!\n";
-            jogo();
+            cout << nomeDoJogadorAtual << "\nDigite o nome do jogador 1: ";
+            cin >> nomeDoJogadorUm;
+            cout << nomeDoJogadorAtual << "\nDigite o nome do Jogador 2: ";
+            cin >> nomeDoJogadorDois;
+            jogo(nomeDoJogadorUm, nomeDoJogadorDois, nomeDoJogadorAtual);
             break;
         case 2:
             cout << "\nSobre o Jogo\n";
