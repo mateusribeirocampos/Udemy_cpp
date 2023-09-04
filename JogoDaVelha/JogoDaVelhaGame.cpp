@@ -107,7 +107,7 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
     char tabuleiro[3][3];
 
     // Nome dos jogadores
-    //string nomeDoJogadorUm, nomeDoJogadorDois, nomeDoJogadorAtual;
+    // string nomeDoJogadorUm, nomeDoJogadorDois, nomeDoJogadorAtual;
 
     // Auxiliares para o tabuleiro
     // int linhas, colunas;
@@ -126,6 +126,9 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
 
     // Opção para reiniciar o jogo
     int opcao;
+
+    // Verifica se o jogador colocou um marcador no tabuleiro
+    bool posicionouJogada;
 
     // Coloca os '-' no tabuleiro
     iniciaTabuleiro(tabuleiro);
@@ -149,22 +152,34 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
             nomeDoJogadorAtual = nomeDoJogadorDois;
         }
 
-        // lê a posição desejada
-        cout << nomeDoJogadorAtual << ", digite uma linha: ";
-        cin >> linhaJogada;
-        cout << nomeDoJogadorAtual << ", digite uma coluna: ";
-        cin >> colunaJogada;
 
-        // Verifica de quem é a vez para posicionar o marcador
-        if (turnoDoJogador == 1)
+        posicionouJogada = false;
+        while (posicionouJogada == false)
         {
-            tabuleiro[linhaJogada][colunaJogada] = 'X';
-            turnoDoJogador = 2;
-        }
-        else
-        {
-            tabuleiro[linhaJogada][colunaJogada] = 'O';
-            turnoDoJogador = 1;
+            // lê a posição desejada
+            cout << nomeDoJogadorAtual << ", digite uma linha: ";
+            cin >> linhaJogada;
+            cout << nomeDoJogadorAtual << ", digite uma coluna: ";
+            cin >> colunaJogada;
+
+            // Verifica se a posição é vazia
+            if (tabuleiro[linhaJogada][colunaJogada] == '-')
+            {
+                // Conseguiu posicionar o marcador no tabuleiro
+                posicionouJogada = true;
+
+                // Verifica de quem é a vez para posicionar o marcador
+                if (turnoDoJogador == 1)
+                {
+                    tabuleiro[linhaJogada][colunaJogada] = 'X';
+                    turnoDoJogador = 2;
+                }
+                else
+                {
+                    tabuleiro[linhaJogada][colunaJogada] = 'O';
+                    turnoDoJogador = 1;
+                }
+            }
         }
 
         // Confere se o jogo acabou
