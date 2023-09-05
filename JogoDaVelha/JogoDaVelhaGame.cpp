@@ -100,6 +100,16 @@ int confereTabuleiro(char tabuleiro[3][3])
     return 0;
 }
 
+void exibeInstrucoes()
+{
+    cout << "\nMapa de posicoes";
+    cout << "\n 7 | 8 | 9";
+    cout << "\n -- --- --";
+    cout << "\n 4 | 5 | 6";
+    cout << "\n -- --- --";
+    cout << "\n 1 | 2 | 3";
+}
+
 void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogadorAtual)
 {
     // Variáveis gerais
@@ -113,7 +123,7 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
     // int linhas, colunas;
 
     // pede ao usuário inserir linha e coluna com essas variáveis
-    int linhaJogada, colunaJogada;
+    int linhaJogada, colunaJogada, posicaoJogada;
 
     // estado de jogo
     int estadoDeJogo = 1;
@@ -140,6 +150,9 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
         // exibe o tabuleiro na tela
         exibeTabuleiro(tabuleiro);
 
+        // Exibequal numero corresponde a posição
+        exibeInstrucoes();
+
         cout << "\nRodada: " << rodada << "\n";
 
         // Atualiza o nome do jogador atual
@@ -152,15 +165,25 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
             nomeDoJogadorAtual = nomeDoJogadorDois;
         }
 
+        // Matriz de posições possíveis
+        int posicoes[9][2] = {{2, 0}, {2, 1}, {2, 2}, {1, 0}, {1, 1}, {1, 2}, {0, 0}, {0, 1}, {0, 2}};
 
         posicionouJogada = false;
         while (posicionouJogada == false)
         {
-            // lê a posição desejada
+
+            cout << nomeDoJogadorAtual << ", digite uma posicao conforme o mapa acima";
+            cin >> posicaoJogada;
+
+            // Passa a linha e coluna de posições de acordo com o a matriz de posições exibida no mapa
+            linhaJogada = posicoes[posicaoJogada - 1][0];
+            colunaJogada = posicoes[posicaoJogada - 1][1];
+
+            /*// lê a posição desejada
             cout << nomeDoJogadorAtual << ", digite uma linha: ";
             cin >> linhaJogada;
             cout << nomeDoJogadorAtual << ", digite uma coluna: ";
-            cin >> colunaJogada;
+            cin >> colunaJogada;*/
 
             // Verifica se a posição é vazia
             if (tabuleiro[linhaJogada][colunaJogada] == '-')
