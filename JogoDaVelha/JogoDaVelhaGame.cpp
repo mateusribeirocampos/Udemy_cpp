@@ -110,7 +110,7 @@ void exibeInstrucoes()
     cout << "\n 1 | 2 | 3";
 }
 
-void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogadorAtual)
+void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogadorAtual, int pontuacaoJogadorUm, int pontuacaoJogadorDois)
 {
     // Variáveis gerais
     //  tabuleiro do jogo
@@ -147,13 +147,15 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
     {
         limpaTela();
 
+        cout << "\nRodada: " << rodada << "\n";
+        cout << "\n"
+             << nomeDoJogadorUm << " " << pontuacaoJogadorUm << " X " << pontuacaoJogadorDois << " " << nomeDoJogadorDois << endl;
+
         // exibe o tabuleiro na tela
         exibeTabuleiro(tabuleiro);
 
         // Exibequal numero corresponde a posição
         exibeInstrucoes();
-
-        cout << "\nRodada: " << rodada << "\n";
 
         // Atualiza o nome do jogador atual
         if (turnoDoJogador == 1)
@@ -172,7 +174,7 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
         while (posicionouJogada == false)
         {
 
-            cout << nomeDoJogadorAtual << ", digite uma posicao conforme o mapa acima";
+            cout << "\n\n" << nomeDoJogadorAtual << ", digite uma posicao conforme o mapa acima: ";
             cin >> posicaoJogada;
 
             // Passa a linha e coluna de posições de acordo com o a matriz de posições exibida no mapa
@@ -209,11 +211,13 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
         if (confereTabuleiro(tabuleiro) == 1)
         {
             cout << "O jogador " << nomeDoJogadorUm << " venceu!!!";
+            pontuacaoJogadorUm++;
             estadoDeJogo = 0;
         }
         else if (confereTabuleiro(tabuleiro) == 2)
         {
             cout << "O jogador " << nomeDoJogadorDois << " venceu!!!";
+            pontuacaoJogadorDois++;
             estadoDeJogo = 0;
         }
         // Aumenta uma rodada
@@ -233,7 +237,7 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
     switch (opcao)
     {
     case 1:
-        jogo(nomeDoJogadorUm, nomeDoJogadorDois, nomeDoJogadorAtual);
+        jogo(nomeDoJogadorUm, nomeDoJogadorDois, nomeDoJogadorAtual, pontuacaoJogadorUm, pontuacaoJogadorDois);
         break;
     case 2:
         menuInicial();
@@ -248,6 +252,7 @@ void menuInicial()
 {
 
     int opcao;
+    // Nomes dos jogadores
     string nomeDoJogadorAtual, nomeDoJogadorUm, nomeDoJogadorDois;
 
     while (opcao < 1 || opcao > 3)
@@ -269,7 +274,7 @@ void menuInicial()
             cin >> nomeDoJogadorUm;
             cout << nomeDoJogadorAtual << "\nDigite o nome do Jogador 2: ";
             cin >> nomeDoJogadorDois;
-            jogo(nomeDoJogadorUm, nomeDoJogadorDois, nomeDoJogadorAtual);
+            jogo(nomeDoJogadorUm, nomeDoJogadorDois, nomeDoJogadorAtual, 0, 0);
             break;
         case 2:
             cout << "\nSobre o Jogo\n";
