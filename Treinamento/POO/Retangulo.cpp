@@ -13,7 +13,7 @@ private:
 public:
     Retangulo(double x1, double y1, double x2, double y2)
     {
-        if (x1 >= 0.0 && x1 <= 20.0 && y1 >= 0.0 && y1 <= 20.0 && x2 >= 0.0 && x2 <= 20.0 && y2 >= 0.0 && y2 <= 20.0 && x1 < x2 && y1 < y2)
+        if (x1 >= 0.0 && x1 <= 20.0 && y1 >= 0.0 && y1 <= 20.0 && x2 >= 0.0 && x2 <= 20.0 && y2 >= 0.0 && y2 <= 20.0 && x1 < x2 && y1 > y2)
         {
             this->x1 = x1;
             this->x2 = x2;
