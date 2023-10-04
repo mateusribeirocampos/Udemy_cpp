@@ -109,7 +109,6 @@ void exibeInstrucoes()
     cout << "\n -- --- --";
     cout << "\n 1 | 2 | 3";
 }
-
 void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogadorAtual, int pontuacaoJogadorUm, int pontuacaoJogadorDois)
 {
     // Variáveis gerais
