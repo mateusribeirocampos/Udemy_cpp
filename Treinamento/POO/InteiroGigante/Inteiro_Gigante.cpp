@@ -1,102 +1,171 @@
 #include <iostream>
+#include <cstring>
+#include <algorithm>
+
 using namespace std;
 
-class InteiroGigante {
-  private:
-    int digitos[40];
+class HugeInteger {
+private:
+  int digits[40];
+public:
+  HugeInteger() {
+    memset(digits, 0, sizeof(digits));
+  }
 
-  public:
-    void leiaInteiroGigante() {
-      cout << "Digite um inteiro de até 40 dígitos: ";
-      string num;
-      cin >> num;
+  void input() {
+    string str;
+    cin >> str;
+    // O comprimento da string str é armazenado na variável len.
+    int len = str.length();
+    cout << len << endl;
+    for (int i = 0; i < len; i++) {
+      digits[39 - i] = str[len - 1 - i] - '0';
+      cout << i << endl;
+    }
+  }
 
-      int idx = 0;
-      for(char c : num) {
-        digitos[idx++] = c - '0';  
+  void output() {
+    int i = 0;
+    while (i < 40 && digits[i] == 0) {
+      i++;
+    }
+    if (i == 40) {
+      cout << "0";
+    } else {
+      while (i < 40) {
+        cout << digits[i];
+        i++;
       }
     }
+    std::cout << std::endl;
+  }
 
-    void imprimeInteiroGigante() {
-      bool comecou = false;
-      for(int i = 39; i >= 0; i--) {
-        if(digitos[i] != 0) {
-          comecou = true;
-        }
-        if(comecou) {
-          cout << digitos[i];
-        }
-      }
-      cout << endl;
+  HugeInteger add(const HugeInteger& other) const {
+    HugeInteger result;
+    int carry = 0;
+    for (int i = 39; i >= 0; i--) {
+      int sum = digits[i] + other.digits[i] + carry;
+      result.digits[i] = sum % 10;
+      carry = sum / 10;
     }
+    return result;
+  }
 
-    void adicioneInteiroGigantes(InteiroGigante &ig1, InteiroGigante &ig2) {
+  HugeInteger subtract(const HugeInteger& other) const {
+    HugeInteger result;
+    int borrow = 0;
+    for (int i = 39; i >= 0; i--) {
+      int diff = digits[i] - other.digits[i] - borrow;
+      if (diff < 0) {
+        diff += 10;
+        borrow = 1;
+      } else {
+        borrow = 0;
+      }
+      result.digits[i] = diff;
+    }
+    return result;
+  }
+
+  bool isEqualTo(const HugeInteger& other) const {
+    for (int i = 0; i < 40; i++) {
+      if (digits[i] != other.digits[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  bool isNotEqualTo(const HugeInteger& other) const {
+    return !isEqualTo(other);
+  }
+
+  bool isGreaterThan(const HugeInteger& other) const {
+    for (int i = 0; i < 40; i++) {
+      if (digits[i] > other.digits[i]) {
+        return true;
+      } else if (digits[i] < other.digits[i]) {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  bool isLessThan(const HugeInteger& other) const {
+    for (int i = 0; i < 40; i++) {
+      if (digits[i] < other.digits[i]) {
+        return true;
+      } else if (digits[i] > other.digits[i]) {
+        return false;
+      }
+    }
+    return false;
+  }
+
+  bool isGreaterThanOrEqualTo(const HugeInteger& other) const {
+    return !isLessThan(other);
+  }
+
+  bool isLessThanOrEqualTo(const HugeInteger& other) const {
+    return !isGreaterThan(other);
+  }
+
+  bool isZero() const {
+    for (int i = 0; i < 40; i++) {
+      if (digits[i] != 0) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  HugeInteger multiply(const HugeInteger& other) const {
+    HugeInteger result;
+    for (int i = 39; i >= 0; i--) {
       int carry = 0;
-      for(int i = 39; i >= 0; i--) {
-        int digito = ig1.digitos[i] + ig2.digitos[i] + carry;
-        carry = digito / 10;
-        digitos[i] = digito % 10;  
+      for (int j = 39; j >= 0; j--) {
+        int product = digits[i] * other.digits[j] + carry + result.digits[i + j + 1];
+        result.digits[i + j + 1] = product % 10;
+        carry = product / 10;
       }
+      result.digits[i] += carry;
     }
+    return result;
+  }
 
-    void subtraiaInteiroGigantes(InteiroGigante &ig1, InteiroGigante &ig2) {
-      int borrow = 0;
-      for(int i = 39; i >= 0; i--) {
-        int digito = ig1.digitos[i] - ig2.digitos[i] - borrow;
-        if(digito < 0) {
-          digitos[i] = digito + 10;
-          borrow = 1;
-        } else {
-          digitos[i] = digito;
-          borrow = 0;
-        }
+  HugeInteger divide(const HugeInteger& other) const {
+    HugeInteger result;
+    HugeInteger remainder = *this;
+    for (int i = 0; i < 40; i++) {
+      int quotient = 0;
+      while (remainder.isGreaterThanOrEqualTo(other)) {
+        remainder = remainder.subtract(other);
+        quotient++;
       }
-    }
-
-    bool eIgual(InteiroGigante &ig) {
-      for(int i = 0; i < 40; i++) {
-        if(digitos[i] != ig.digitos[i]) {
-          return false;
-        }
+      result.digits[i] = quotient;
+      remainder.digits[39] = 0;
+      for (int j = 38; j >= 0; j--) {
+        remainder.digits[j + 1] = remainder.digits[j];
       }
-      return true;
+      remainder.digits[0] = digits[i + 1];
     }
+    return result;
+  }
 
-    bool naoEIgual(InteiroGigante &ig) {
-      return !eIgual(ig); 
-    }
-
-    bool ehMaior(InteiroGigante &ig) {
-      for(int i = 39; i >= 0; i--) {
-        if(digitos[i] > ig.digitos[i]) {
-          return true;
-        } else if(digitos[i] < ig.digitos[i]) {
-          return false;
-        }
+  HugeInteger modulus(const HugeInteger& other) const {
+    HugeInteger remainder = *this;
+    for (int i = 0; i < 40; i++) {
+      int quotient = 0;
+      while (remainder.isGreaterThanOrEqualTo(other)) {
+        remainder = remainder.subtract(other);
+        quotient++;
       }
-      return false; 
+      remainder.digits[39] = 0;
+      for (int j = 38; j >= 0; j--) {
+        remainder.digits[j + 1] = remainder.digits[j];
+      }
+      remainder.digits[0] = digits[i + 1];
     }
-
-    bool ehMenorQueOuIgualA(InteiroGigante &ig) {
-      return ehMenorQue(ig) || eIgual(ig);
-    }
-
-    bool ehMenorQue(InteiroGigante &ig) {
-      return !ehMaior(ig) && !eIgual(ig);
-    }
+    return remainder;
+  }
 };
-
-int main() {
-  InteiroGigante n1, n2, resultado;
-
-  n1.leiaInteiroGigante();
-  n2.leiaInteiroGigante();
-
-  resultado.adicioneInteiroGigantes(n1, n2);
-  resultado.imprimeInteiroGigante();
-
-  resultado.subtraiaInteiroGigantes(n1, n2);
-  resultado.imprimeInteiroGigante();
-
-  return 0;
-}
