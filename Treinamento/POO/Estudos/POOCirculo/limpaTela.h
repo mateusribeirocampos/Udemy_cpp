@@ -1,3 +1,6 @@
+#ifndef LIMPATELA_H
+#define LIMPATELA_H
+
 #include <iostream>
 using namespace std;
 
@@ -7,3 +10,5 @@ class limpaTela {
         system("cls");
     }
 };
+
+#endif // LIMPATELA_H
