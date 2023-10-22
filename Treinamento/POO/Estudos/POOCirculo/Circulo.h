@@ -29,6 +29,7 @@ class Circulo
     // calcular a area do circulo
     void calculaArea(){
         area = 2 * pow(raio, raio);
+        cout << "A area do circulo: " << area << endl << endl;
     }
     // pegar o perimetro do circulo
     double getPerimetro(){
@@ -37,6 +38,7 @@ class Circulo
     // calcular o perimetro do circulo
     void calculaPerimetro(){
         perimentro = 2 * pi * raio;
+        cout << "O perimetro do circulo: " << perimentro << endl << endl;
     }
 };
 

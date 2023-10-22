@@ -8,17 +8,21 @@ int main()
 {
     int opcao = 0;
 
-    while (opcao != 2)
+    while (opcao != 3)
     {
         User infoUser;
         infoUser.getInfoUser();
-        cout << "Deseja realizar outra operação? " << endl;
+        cout << "Deseja realizar outra operacao? " << endl;
         cout << "1 - Sim" << endl;
         cout << "2 - Sair" << endl;
-        cout << "Digite sua opção: " << endl;
+        cout << "Digite sua opcao: " << endl;
         cin >> opcao;
 
-        if (opcao == 2)
+        if (opcao == 1)
+        {
+            infoUser.getInfoUser();
+        }
+        else
         {
             cout << "Obrigado por utilizar o programa!" << endl;
             break;
