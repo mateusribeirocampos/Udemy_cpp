@@ -6,11 +6,11 @@ using namespace std;
 
 int main()
 {
+    User infoUser;
     int opcao = 0;
 
     while (opcao != 3)
     {
-        User infoUser;
         infoUser.getInfoUser();
         cout << "Deseja realizar outra operacao? " << endl;
         cout << "1 - Sim" << endl;
@@ -18,16 +18,12 @@ int main()
         cout << "Digite sua opcao: " << endl;
         cin >> opcao;
 
-        if (opcao == 1)
-        {
-            infoUser.getInfoUser();
-        }
-        else
+        if (opcao == 2)
         {
             cout << "Obrigado por utilizar o programa!" << endl;
             break;
         }
-
-        return 0;
     }
+
+    return 0;
 }
