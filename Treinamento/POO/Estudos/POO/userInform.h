@@ -3,7 +3,7 @@
 #include "Subtrai.h"
 #include "Multiplica.h"
 #include "Divide.h"
-#include "LimpaTela.h"
+#include "limpaTela.h"
 using namespace std;
 
 class userInform
@@ -13,6 +13,11 @@ public:
     {
         LimpaTela limpaTelaObj;
         limpaTelaObj.limpaTela();
+
+        Soma somaObj;
+        Subtrai subtraiObj;
+        Multiplica multiplicaObj;
+        Divide divideObj;
 
         int num1, num2, opcao = 0;
         cout << "Informe o primeiro numero: " << endl;
@@ -30,29 +35,28 @@ public:
             cin >> opcao;
 
             limpaTelaObj.limpaTela();
-            
+
             switch (opcao)
             {
             case 1:
-                Soma somaObj;
                 somaObj.setNum1(num1);
                 somaObj.setNum2(num2);
                 somaObj.calcularSoma();
                 break;
             case 2:
-                Subtrai subtraiObj;
+
                 subtraiObj.setNum1(num1);
                 subtraiObj.setNum2(num2);
                 subtraiObj.calcularSubtracao();
                 break;
             case 3:
-                Multiplica multiplicaObj;
+
                 multiplicaObj.setNum1(num1);
                 multiplicaObj.setNum2(num2);
                 multiplicaObj.calculaMultiplica();
                 break;
             case 4:
-                Divide divideObj;
+
                 divideObj.setNum1(num1);
                 divideObj.setNum2(num2);
                 divideObj.calculaDivisao();

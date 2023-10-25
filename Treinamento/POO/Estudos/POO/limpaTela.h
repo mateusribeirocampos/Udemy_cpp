@@ -8,6 +8,7 @@ class LimpaTela
 {
     public:
     void limpaTela(){
+        system("clear");
         system("cls");
     }
 };

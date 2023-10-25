@@ -1,16 +1,17 @@
 #include <iostream>
-#include "divide.h"
-#include "soma.h"
-#include "multiplica.h"
-#include "subtrai.h"
+#include "Divide.h"
+#include "Soma.h"
+#include "Multiplica.h"
+#include "Subtrai.h"
 #include "limpaTela.h"
 #include "userInform.h"
 using namespace std;
-int main(){
+int main()
+{
     userInform user;
     int opcao = 0;
 
-    while (opcao != 5)
+    while (opcao != 3)
     {
         user.getInform();
         cout << "Deseja realizar outra operacao? " << endl;
@@ -19,10 +20,10 @@ int main(){
         cout << "Digite sua opcao: " << endl;
         cin >> opcao;
 
-        if(opcao == 2){
+        if (opcao == 2)
+        {
             cout << "Obrigado por utilizar o programa!" << endl;
             break;
         }
     }
-    
 }

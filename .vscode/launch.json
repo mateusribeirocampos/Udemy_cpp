@@ -6,8 +6,8 @@
       "type": "lldb",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/mateusribeirodecampos/Documents/VsCode.file/Udemy_cpp",
-      "program": "/Users/mateusribeirodecampos/Documents/VsCode.file/Udemy_cpp/build/Debug/outDebug"
+      "cwd": ".",
+      "program": "build/Debug/outDebug"
     }
   ]
 }
