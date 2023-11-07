@@ -8,7 +8,7 @@ class CalculoJurosCompostos
 private:
     double capitalPrincipal = 1000.0; //quantia inicial antes dos juros 
     double taxa = 0.05; // taxa de juros 
-    double tempo = 10;  // tempo em anos
+    double tempo = 15;  // tempo em anos
     double montante; // quantia em depósito ao fim de cada ano
 
     public:
@@ -35,7 +35,7 @@ private:
             // calcula nova quantia para o ano especificado
             montante = capitalPrincipal * pow(1.0 + taxa, ano);
             // exibe o ano e a quantia
-            cout << setw(4) << ano << setw(21) << montante << endl;
+            cout << setw(3) << ano << setw(19) << montante << endl;
         }
     }
 };
