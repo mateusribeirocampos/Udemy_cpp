@@ -68,12 +68,78 @@ void DigitaMatriz(int **&matriz, int **&matriz2, int &linhas, int &colunas, int 
         cout << endl;
     }
 }
-void somaMatriz()
+void somaMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, int colunas, int linhas1, int colunas1)
 {
+    if (colunas == colunas1 && linhas == linhas1)
+    {
+        matriz3 = new int *[linhas]; // aloca um vetor de ponteiros
+        for (int i = 0; i < linhas; i++)
+        {
+            matriz3[i] = new int[colunas]; // aloca um vetor de inteiros para cada posição do vetor de ponteiros
+        }
+
+        for (int i = 0; i < linhas; i++)
+        {
+            for (int j = 0; j < colunas; j++)
+            {
+                matriz3[i][j] = matriz[i][j] + matriz2[i][j]; // inicializa a matriz3 com 0
+                cout << "Matriz[" << i << "][" << j << "] = " << matriz[i][j] << " + " << " Matriz2[" << i << "][" << j << "] = " << matriz2[i][j] << endl;
+                cout << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << endl;
+            }
+        }
+
+        cout << "A soma da Matriz A + Matriz B: " << endl; // Impressão da matriz3 na tela
+        for (int i = 0; i < linhas; i++)                   // Loop para percorrer as linhas da matriz matriz3
+        {
+            for (int j = 0; j < colunas; j++) // Loop para percorrer as colunas da matriz matriz3
+            {
+                cout << "  " << matriz3[i][j]; // Impressão da matriz3 na tela
+            }
+            cout << endl;
+        }
+    }
+    else
+    {
+        cout << "Nao e possivel somar as matrizes!" << endl;
+        cout << "Na soma de matriz so e possivel se o numero de linhas e colunas da matriz A for igual ao numero de linhas e colunas da matriz B!";
+    }
 }
 
-void subratraiMatriz()
+void subratraiMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, int colunas, int linhas1, int colunas1)
 {
+    if (colunas == colunas1 && linhas == linhas1)
+    {
+        matriz3 = new int *[linhas]; // aloca um vetor de ponteiros
+        for (int i = 0; i < linhas; i++)
+        {
+            matriz3[i] = new int[colunas]; // aloca um vetor de inteiros para cada posição do vetor de ponteiros
+        }
+
+        for (int i = 0; i < linhas; i++)
+        {
+            for (int j = 0; j < colunas; j++)
+            {
+                matriz3[i][j] = matriz[i][j] - matriz2[i][j]; // inicializa a matriz3 com 0
+                cout << "Matriz[" << i << "][" << j << "] = " << matriz[i][j] << " + " << " Matriz2[" << i << "][" << j << "] = " << matriz2[i][j] << endl;
+                cout << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << endl;
+            }
+        }
+
+        cout << "A soma da Matriz A + Matriz B: " << endl; // Impressão da matriz3 na tela
+        for (int i = 0; i < linhas; i++)                   // Loop para percorrer as linhas da matriz matriz3
+        {
+            for (int j = 0; j < colunas; j++) // Loop para percorrer as colunas da matriz matriz3
+            {
+                cout << "  " << matriz3[i][j]; // Impressão da matriz3 na tela
+            }
+            cout << endl;
+        }
+    }
+    else
+    {
+        cout << "Nao e possivel somar as matrizes!" << endl;
+        cout << "Na soma de matriz so e possivel se o numero de linhas e colunas da matriz A for igual ao numero de linhas e colunas da matriz B!";
+    }
 }
 
 void mulitiplicaMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, int colunas, int linhas1, int colunas1)
@@ -103,7 +169,7 @@ void mulitiplicaMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, 
                 for (k = 0; k < colunas; k++) // Loop para percorrer as colunas da matriz A e as linhas da matriz B
                 {
                     matriz3[i][j] += matriz[i][k] * matriz2[k][j]; // Multiplicação das matrizes A e B
-                    cout << "Matriz[" << i << "][" << k << "] = " << matriz[i][k] << " * " << " Matriz2[" << k << "][" << j << "] = "  << matriz2[k][j] << " = " << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << endl;	
+                    cout << "Matriz[" << i << "][" << k << "] = " << matriz[i][k] << " * " << " Matriz2[" << k << "][" << j << "] = " << matriz2[k][j] << " = " << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << endl;
                     cout << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << endl << endl;
                 }
             }
@@ -122,11 +188,12 @@ void mulitiplicaMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, 
     else
     {
         cout << "Nao e possivel multiplicar as matrizes!" << endl;
+        cout << "Na multiliplicacao de matriz so e possivel se o numero de colunas da matriz A for igual ao numero de linhas da matriz B!";
         return;
     }
 }
 
-void divideMatriz()
+void inversaMatriz()
 {
 }
 
@@ -137,31 +204,39 @@ void menuInicial()
     int **matriz2 = nullptr;
     int **matriz3 = nullptr;
 
-    while (opcoes < 1 || opcoes > 5)
+    while (opcoes < 1 || opcoes > 6)
     {
         cout << "1 - Somar duas matrizes" << endl;
         cout << "2 - Subtrair duas matrizes" << endl;
         cout << "3 - Multiplicar duas matrizes" << endl;
-        cout << "4 - Dividir duas matrizes" << endl;
-        cout << "5 - Sair" << endl;
+        cout << "4 - Inversa da Matriz" << endl;
+        cout << "5 - Transposta da Matriz" << endl;
+        cout << "6 - Sair" << endl;
         cout << "Digite a opcao desejada: ";
         cin >> opcoes;
 
         switch (opcoes)
         {
         case 1:
-            cout << "Soma" << endl;
+            cout << "Soma de matrizes" << endl;
+            DigitaMatriz(matriz, matriz2, linhas, colunas, linhas1, colunas1);
+            somaMatriz(matriz, matriz2, matriz3, linhas, colunas, linhas1, colunas1);
             break;
         case 2:
-            cout << "Subtracao" << endl;
+            cout << "Subtracao de matrizes" << endl;
+            DigitaMatriz(matriz, matriz2, linhas, colunas, linhas1, colunas1);
+            subratraiMatriz(matriz, matriz2, matriz3, linhas, colunas, linhas1, colunas1);
             break;
         case 3:
-            cout << "Multiplicacao" << endl;
+            cout << "Multiplicacao de matrizes" << endl;
             DigitaMatriz(matriz, matriz2, linhas, colunas, linhas1, colunas1);
             mulitiplicaMatriz(matriz, matriz2, matriz3, linhas, colunas, linhas1, colunas1);
             break;
         case 4:
-            cout << "Divisao" << endl;
+            cout << "Inversa da matriz" << endl;
+            break;
+        case 5:
+            cout << "Transposta da matriz" << endl;
             break;
         default:
             cout << "Opcao invalida!" << endl;
