@@ -1,34 +1,37 @@
-#include <new> // Inclusão da biblioteca para manipulação de memória dinâmica
-#include <iostream> // Inclusão da biblioteca para entrada e saída de dados
-#include <string> // Inclusão da biblioteca para manipulação de strings
-using namespace std; // Uso do namespace std
+#include <iostream>
+using namespace std;
 
-int main () {
+int main() {
+    int linha, coluna;
 
-    int linhas, colunas;
-    int **matriz; // Declaração de um ponteiro para ponteiro de int
+    // Solicita ao usuário o número de linhas e colunas da matriz
+    cout << "Digite o número de linhas: ";
+    cin >> linha;
+    cout << "Digite o número de colunas: ";
+    cin >> coluna;
 
-    cout << "Digite o numero de linhas: ";
-    cin >> linhas; // Leitura do número de linhas da matriz
-    cout << "\nDigite o numero de colunas: ";
-    cin >> colunas; // Leitura do número de colunas da matriz
+    // Aloca dinamicamente um array de ponteiros para int, que representará as linhas da matriz
+    int **matriz = new int*[linha];
 
-    matriz = (int **) new int[linhas]; // Alocação dinâmica de memória para as linhas da matriz
-
-    for (int i = 0; i < linhas; i++)
-    {
-        matriz[i] = (int *) new int[colunas]; // Alocação dinâmica de memória para as colunas da matriz
+    // Aloca dinamicamente os arrays de int (colunas) para cada linha
+    for (int i = 0; i < linha; i++) {
+        matriz[i] = new int[coluna];
     }
 
-    for (int i = 0; i < linhas; i++) // Loop para percorrer as linhas da matriz
-    {
-        for (int j = 0; j < colunas; j++) // Loop para percorrer as colunas da matriz
-        {
-            matriz[i][j] = i; // Atribuição de um valor (no caso, o número da linha) para cada posição da matriz
-            cout << "  " << matriz[i][j]; // Impressão da matriz na tela
+    // Preenche a matriz e a imprime
+    for (int i = 0; i < linha; i++) {
+        for (int j = 0; j < coluna; j++) {
+            matriz[i][j] = i; // Preenche a matriz com o valor 'i'
+            cout << "  " << matriz[i][j]; // Imprime o valor da matriz
         }
-        cout << endl; // Pula uma linha após imprimir uma linha completa da matriz
+        cout << endl;
     }
-    
-    return 0; // Fim do programa
+
+    // Libera a memória alocada para evitar vazamento de memória
+    for (int i = 0; i < linha; i++) {
+        delete[] matriz[i];
+    }
+    delete[] matriz;
+
+    return 0;
 }
