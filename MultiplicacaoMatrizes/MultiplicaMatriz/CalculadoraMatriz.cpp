@@ -1,15 +1,14 @@
 #include <iostream>
 #include <new>
 #include <iomanip>
-using namespace std;
 
 void DigitaMatriz(int **&matriz, int **&matriz2, int &linhas, int &colunas, int &linhas1, int &colunas1)
 {
     int i, j;
-    cout << "Digite o numero de linhas da matriz A: ";
-    cin >> linhas;
-    cout << "Digite o numero de colunas da matriz A: ";
-    cin >> colunas;
+    std::cout << "Digite o numero de linhas da matriz A: ";
+    std::cin >> linhas;
+    std::cout << "Digite o numero de colunas da matriz A: ";
+    std::cin >> colunas;
 
     matriz = new int *[linhas];  // aloca um vetor de ponteiros
     for (i = 0; i < linhas; i++) // aloca um vetor para cada posição do vetor de ponteiros
@@ -17,30 +16,30 @@ void DigitaMatriz(int **&matriz, int **&matriz2, int &linhas, int &colunas, int 
         matriz[i] = new int[colunas]; // aloca um vetor de inteiros para cada posição do vetor de ponteiros
     }
 
-    cout << "Digite os elementos da matriz A: " << endl;
+    std::cout << "Digite os elementos da matriz A: " << std::endl;
     for (i = 0; i < linhas; i++)
     {
         for (j = 0; j < colunas; j++)
         {
-            cout << "Digite o elemento da linha [" << i + 1 << "] e coluna [" << j + 1 << "]: ";
-            cin >> matriz[i][j];
+            std::cout << "Digite o elemento da linha [" << i + 1 << "] e coluna [" << j + 1 << "]: ";
+            std::cin >> matriz[i][j];
         }
     }
 
-    cout << "Matriz A: " << endl;
+    std::cout << "Matriz A: " << std::endl;
     for (i = 0; i < linhas; i++)
     {
         for (j = 0; j < colunas; j++)
         {
-            cout << " " << matriz[i][j];
+            std::cout << std::setw(4) << " " << matriz[i][j];
         }
-        cout << endl;
+        std::cout << std::endl;
     }
 
-    cout << "\nDigite o numero de linhas da matriz B: ";
-    cin >> linhas1;
-    cout << "Digite o numero de colunas da matriz B: ";
-    cin >> colunas1;
+    std::cout << "\nDigite o numero de linhas da matriz B: ";
+    std::cin >> linhas1;
+    std::cout << "Digite o numero de colunas da matriz B: ";
+    std::cin >> colunas1;
 
     matriz2 = new int *[linhas1]; // aloca um vetor de ponteiros
     for (i = 0; i < linhas1; i++) // aloca um vetor para cada posição do vetor de ponteiros
@@ -48,24 +47,58 @@ void DigitaMatriz(int **&matriz, int **&matriz2, int &linhas, int &colunas, int 
         matriz2[i] = new int[colunas1]; // aloca um vetor de inteiros para cada posição do vetor de ponteiros
     }
 
-    cout << "Digite os elementos da matriz B: " << endl;
+    std::cout << "Digite os elementos da matriz B: " << std::endl;
     for (i = 0; i < linhas1; i++)
     {
         for (j = 0; j < colunas1; j++)
         {
-            cout << "Digite o elemento da linha [" << i + 1 << "] e coluna [" << j + 1 << "]: ";
-            cin >> matriz2[i][j];
+            std::cout << "Digite o elemento da linha [" << i + 1 << "] e coluna [" << j + 1 << "]: ";
+            std::cin >> matriz2[i][j];
         }
     }
 
-    cout << "Matriz B: " << endl;
+    std::cout << "Matriz B: " << std::endl;
     for (i = 0; i < linhas1; i++)
     {
         for (j = 0; j < colunas1; j++)
         {
-            cout << " " << matriz2[i][j];
+            std::cout << std::setw(4) << " " << matriz2[i][j];
         }
-        cout << endl;
+        std::cout << std::endl;
+    }
+}
+void DigitaMatrizTransposta(int **&matriz, int &linhas, int &colunas)
+{
+    int i, j;
+    std::cout << "Digite o numero de linhas da matriz T: ";
+    std::cin >> linhas;
+    std::cout << "Digite o numero de colunas da matriz T: ";
+    std::cin >> colunas;
+
+    matriz = new int *[linhas];  // aloca um vetor de ponteiros
+    for (i = 0; i < linhas; i++) // aloca um vetor para cada posição do vetor de ponteiros
+    {
+        matriz[i] = new int[colunas]; // aloca um vetor de inteiros para cada posição do vetor de ponteiros
+    }
+
+    std::cout << "Digite os elementos da matriz T: " << std::endl;
+    for (i = 0; i < linhas; i++)
+    {
+        for (j = 0; j < colunas; j++)
+        {
+            std::cout << "Digite o elemento da linha [" << i + 1 << "] e coluna [" << j + 1 << "]: ";
+            std::cin >> matriz[i][j];
+        }
+    }
+
+    std::cout << "Matriz T: " << std::endl;
+    for (i = 0; i < linhas; i++)
+    {
+        for (j = 0; j < colunas; j++)
+        {
+            std::cout << std::setw(4) << " " << matriz[i][j];
+        }
+        std::cout << std::endl;
     }
 }
 void somaMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, int colunas, int linhas1, int colunas1)
@@ -83,25 +116,25 @@ void somaMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, int col
             for (int j = 0; j < colunas; j++)
             {
                 matriz3[i][j] = matriz[i][j] + matriz2[i][j]; // inicializa a matriz3 com 0
-                cout << "Matriz[" << i << "][" << j << "] = " << matriz[i][j] << " + " << " Matriz2[" << i << "][" << j << "] = " << matriz2[i][j] << endl;
-                cout << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << endl;
+                std::cout << "Matriz[" << i << "][" << j << "] = " << matriz[i][j] << " + " << " Matriz2[" << i << "][" << j << "] = " << matriz2[i][j] << std::endl;
+                std::cout << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << std::endl;
             }
         }
 
-        cout << "A soma da Matriz A + Matriz B: " << endl; // Impressão da matriz3 na tela
+        std::cout << "A soma da Matriz A + Matriz B: " << std::endl; // Impressão da matriz3 na tela
         for (int i = 0; i < linhas; i++)                   // Loop para percorrer as linhas da matriz matriz3
         {
             for (int j = 0; j < colunas; j++) // Loop para percorrer as colunas da matriz matriz3
             {
-                cout << "  " << matriz3[i][j]; // Impressão da matriz3 na tela
+                std::cout << std::setw(4) << "  " << matriz3[i][j]; // Impressão da matriz3 na tela
             }
-            cout << endl;
+            std::cout << std::endl;
         }
     }
     else
     {
-        cout << "Nao e possivel somar as matrizes!" << endl;
-        cout << "Na soma de matriz so e possivel se o numero de linhas e colunas da matriz A for igual ao numero de linhas e colunas da matriz B!";
+        std::cout << "Nao e possivel somar as matrizes!" << std::endl;
+        std::cout << "Na soma de matriz so e possivel se o numero de linhas e colunas da matriz A for igual ao numero de linhas e colunas da matriz B!";
     }
 }
 
@@ -120,25 +153,25 @@ void subratraiMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, in
             for (int j = 0; j < colunas; j++)
             {
                 matriz3[i][j] = matriz[i][j] - matriz2[i][j]; // inicializa a matriz3 com 0
-                cout << "Matriz[" << i << "][" << j << "] = " << matriz[i][j] << " + " << " Matriz2[" << i << "][" << j << "] = " << matriz2[i][j] << endl;
-                cout << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << endl;
+                std::cout << "Matriz[" << i << "][" << j << "] = " << matriz[i][j] << " + " << " Matriz2[" << i << "][" << j << "] = " << matriz2[i][j] << std::endl;
+                std::cout << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << std::endl;
             }
         }
 
-        cout << "A soma da Matriz A + Matriz B: " << endl; // Impressão da matriz3 na tela
+        std::cout << "A soma da Matriz A + Matriz B: " << std::endl; // Impressão da matriz3 na tela
         for (int i = 0; i < linhas; i++)                   // Loop para percorrer as linhas da matriz matriz3
         {
             for (int j = 0; j < colunas; j++) // Loop para percorrer as colunas da matriz matriz3
             {
-                cout << "  " << matriz3[i][j]; // Impressão da matriz3 na tela
+                std::cout << std::setw(4) << "  " << matriz3[i][j]; // Impressão da matriz3 na tela
             }
-            cout << endl;
+            std::cout << std::endl;
         }
     }
     else
     {
-        cout << "Nao e possivel somar as matrizes!" << endl;
-        cout << "Na soma de matriz so e possivel se o numero de linhas e colunas da matriz A for igual ao numero de linhas e colunas da matriz B!";
+        std::cout << "Nao e possivel somar as matrizes!" << std::endl;
+        std::cout << "Na soma de matriz so e possivel se o numero de linhas e colunas da matriz A for igual ao numero de linhas e colunas da matriz B!";
     }
 }
 
@@ -169,29 +202,42 @@ void mulitiplicaMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, 
                 for (k = 0; k < colunas; k++) // Loop para percorrer as colunas da matriz A e as linhas da matriz B
                 {
                     matriz3[i][j] += matriz[i][k] * matriz2[k][j]; // Multiplicação das matrizes A e B
-                    cout << "Matriz[" << i << "][" << k << "] = " << matriz[i][k] << " * " << " Matriz2[" << k << "][" << j << "] = " << matriz2[k][j] << " = " << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << endl;
-                    cout << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << endl << endl;
+                    std::cout << "Matriz[" << i << "][" << k << "] = " << matriz[i][k] << " * " << " Matriz2[" << k << "][" << j << "] = " << matriz2[k][j] << " = " << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << std::endl;
+                    std::cout << "Matriz3[" << i << "][" << j << "] = " << matriz3[i][j] << std::endl << std::endl;
                 }
             }
         }
-        cout << endl;
-        cout << "Matriz A * Matriz B: " << endl; // Impressão da matriz3 na tela
+        std::cout << std::endl;
+        std::cout << "Matriz A * Matriz B: " << std::endl; // Impressão da matriz3 na tela
         for (i = 0; i < linhas; i++)             // Loop para percorrer as linhas da matriz matriz3
         {
             for (j = 0; j < colunas1; j++) // Loop para percorrer as colunas da matriz matriz3
             {
-                cout << "  " << matriz3[i][j]; // Impressão da matriz3 na tela
+                std::cout << std::setw(4) << "  " << matriz3[i][j]; // Impressão da matriz3 na tela
             }
-            cout << endl;
+            std::cout << std::endl;
         }
     }
     else
     {
-        cout << "Nao e possivel multiplicar as matrizes!" << endl;
-        cout << "Na multiliplicacao de matriz so e possivel se o numero de colunas da matriz A for igual ao numero de linhas da matriz B!";
+        std::cout << "Nao e possivel multiplicar as matrizes!" << std::endl;
+        std::cout << "Na multiliplicacao de matriz so e possivel se o numero de colunas da matriz A for igual ao numero de linhas da matriz B!";
         return;
     }
 }
+
+void transpostaMatriz(int **matriz, int linhas, int colunas)
+{
+    int i, j, aux; // variaveis auxiliares
+    for (i = 0; i < linhas; i++)
+    { // Loop para percorrer as linhas da matriz A
+        for (j = 0; j < colunas; j++)
+        {                       // Loop para percorrer as colunas da matriz A
+            matriz[1][1] = aux; // Transposição da matriz A
+        }
+    }
+}
+
 
 void inversaMatriz()
 {
@@ -204,42 +250,55 @@ void menuInicial()
     int **matriz2 = nullptr;
     int **matriz3 = nullptr;
 
-    while (opcoes < 1 || opcoes > 6)
+    while (opcoes < 1 || opcoes > 7)
     {
-        cout << "1 - Somar duas matrizes" << endl;
-        cout << "2 - Subtrair duas matrizes" << endl;
-        cout << "3 - Multiplicar duas matrizes" << endl;
-        cout << "4 - Inversa da Matriz" << endl;
-        cout << "5 - Transposta da Matriz" << endl;
-        cout << "6 - Sair" << endl;
-        cout << "Digite a opcao desejada: ";
-        cin >> opcoes;
+        std::cout << "Calculadora de Matrizes" << std::endl;
+        std::cout << "1 - Somar duas matrizes" << std::endl;
+        std::cout << "2 - Subtrair duas matrizes" << std::endl;
+        std::cout << "3 - Multiplicar duas matrizes" << std::endl;
+        std::cout << "4 - Transposta da Matriz" << std::endl;
+        std::cout << "5 - Determinante da Matriz" << std::endl;
+        std::cout << "6 - Inversa da Matriz" << std::endl;
+        std::cout << "7 - Sair" << std::endl;
+        std::cout << "Digite a opcao desejada: ";
+        std::cin >> opcoes;
 
         switch (opcoes)
         {
         case 1:
-            cout << "Soma de matrizes" << endl;
+            std::cout << "Soma de matrizes" << std::endl;
+            std::cout << "A soma de matrizes segue a seguinte regra:" << std::endl;
+            std::cout << "A Matriz A e a Matriz B devem apresentar a mesma ordem" << std::endl;
             DigitaMatriz(matriz, matriz2, linhas, colunas, linhas1, colunas1);
             somaMatriz(matriz, matriz2, matriz3, linhas, colunas, linhas1, colunas1);
             break;
         case 2:
-            cout << "Subtracao de matrizes" << endl;
+            std::cout << "Subtracao de matrizes" << std::endl;
+            std::cout << "A subtracao de matrizes segue a seguinte regra:" << std::endl;
+            std::cout << "A Matriz A e a Matriz B devem apresentar a mesma ordem" << std::endl;
             DigitaMatriz(matriz, matriz2, linhas, colunas, linhas1, colunas1);
             subratraiMatriz(matriz, matriz2, matriz3, linhas, colunas, linhas1, colunas1);
             break;
         case 3:
-            cout << "Multiplicacao de matrizes" << endl;
+            std::cout << "Multiplicacao de matrizes" << std::endl;
+            std::cout << "A multiplicacao de matrizes segue a seguinte regra:" << std::endl;
+            std::cout << "A Matriz A deve apresentar o numero de colunas igual ao numero de linhas da Matriz B" << std::endl;
             DigitaMatriz(matriz, matriz2, linhas, colunas, linhas1, colunas1);
             mulitiplicaMatriz(matriz, matriz2, matriz3, linhas, colunas, linhas1, colunas1);
             break;
         case 4:
-            cout << "Inversa da matriz" << endl;
+            std::cout << "Transposta da matriz" << std::endl;
+            DigitaMatrizTransposta(matriz, linhas, colunas);
+            transpostaMatriz(matriz, linhas, colunas);
             break;
         case 5:
-            cout << "Transposta da matriz" << endl;
+            std::cout << "Determinante da matriz" << std::endl;
+            break;
+        case 6:
+            std::cout << "Inversa da matriz" << std::endl;
             break;
         default:
-            cout << "Opcao invalida!" << endl;
+            std::cout << "Opcao invalida!" << std::endl;
             break;
         }
     }
