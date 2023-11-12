@@ -69,6 +69,7 @@ void DigitaMatriz(int **&matriz, int **&matriz2, int &linhas, int &colunas, int 
 }
 void DigitaMatrizTransposta(int **&matriz, int &linhas, int &colunas)
 {
+    /* Para a matriz trasnposta deve pedir a linha e converter para coluna para trasnpor*/
     int i, j;
     std::cout << "Digite o numero de linhas da matriz T: ";
     std::cin >> linhas;
@@ -100,6 +101,7 @@ void DigitaMatrizTransposta(int **&matriz, int &linhas, int &colunas)
         }
         std::cout << std::endl;
     }
+    std::cout << "Matriz T de ordem " << colunas << "x" << linhas << std::endl;
 }
 void somaMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, int colunas, int linhas1, int colunas1)
 {
@@ -228,17 +230,23 @@ void mulitiplicaMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, 
 
 void transpostaMatriz(int **matriz, int linhas, int colunas)
 {
-    int i, j, aux; // variaveis auxiliares
-    for (i = 0; i < linhas; i++)
-    { // Loop para percorrer as linhas da matriz A
-        for (j = 0; j < colunas; j++)
-        {                       // Loop para percorrer as colunas da matriz A
-            matriz[1][1] = aux; // Transposição da matriz A
+    int i, j; // variaveis auxiliares
+    int linhaColunaTransposta, colunalinhaTransposta; // variaveis para transposta
+
+    linhaColunaTransposta = colunas; // A linha da matriz transposta é igual a coluna da matriz original
+    colunalinhaTransposta = linhas; // A coluna da matriz transposta é igual a linha da matriz original
+
+    std::cout << std::endl;
+    std::cout << "A transposta da Matriz T: " << std::endl; // Impressão da matriz na tela
+    for(i = 0; i < linhaColunaTransposta; i++){
+        for(j = 0; j < colunalinhaTransposta; j++){
+            matriz[i][j] = matriz[j][i]; // A matriz transposta é a matriz original com as linhas e colunas invertidas
+            std::cout << std::setw(4) << "  " << matriz[i][j]; // Impressão da matriz na tela
         }
+        std::cout << std::endl;
     }
+    std::cout << "Transposta da Matriz T de ordem " << colunalinhaTransposta << "x" << linhaColunaTransposta << std::endl;
 }
-
-
 void inversaMatriz()
 {
 }
