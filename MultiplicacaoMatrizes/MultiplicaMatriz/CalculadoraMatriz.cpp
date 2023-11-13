@@ -2,6 +2,10 @@
 #include <new>
 #include <iomanip>
 
+void limpaTela(){
+    system("clear");
+    system("cls");
+}
 void DigitaMatriz(int **&matriz, int **&matriz2, int &linhas, int &colunas, int &linhas1, int &colunas1)
 {
     int i, j;
@@ -179,6 +183,7 @@ void subratraiMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, in
 
 void mulitiplicaMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, int colunas, int linhas1, int colunas1)
 {
+    limpaTela();
     int i, j, k; // variaveis auxiliares
     // Verifica se o número de colunas da matriz A é igual ao número de linhas da matriz B
     if (colunas == linhas1)
@@ -251,11 +256,21 @@ void transpostaMatriz(int **matriz, int linhas, int colunas)
         std::cout << std::endl;
     }
     std::cout << "Transposta da Matriz T de ordem " << colunalinhaTransposta << "x" << linhaColunaTransposta << std::endl;
+
+    for(i = 0; i < linhaColunaTransposta; i++){ // libera cada vetor de inteiros do vetor de ponteiros
+        delete[] matrizTransposta[i];
+    }
+    delete[] matrizTransposta; // libera o vetor de ponteiros
+
+
+}
+
+void determinanteMatriz()
+{
 }
 void inversaMatriz()
 {
 }
-
 void menuInicial()
 {
     int opcoes = 0, linhas = 0, colunas = 0, linhas1 = 0, colunas1 = 0;
@@ -275,6 +290,8 @@ void menuInicial()
         std::cout << "7 - Sair" << std::endl;
         std::cout << "Digite a opcao desejada: ";
         std::cin >> opcoes;
+
+        limpaTela();
 
         switch (opcoes)
         {
@@ -330,10 +347,7 @@ void limpaMemoria(int **matriz, int linhas)
 
 int main()
 {
-    int linhas = 0;
-    int **matriz = nullptr;
-    int **matriz2 = nullptr;
-    int **matriz3 = nullptr;
+    int linhas = 0, **matriz = nullptr, **matriz2 = nullptr, **matriz3 = nullptr;
 
     menuInicial();
 
