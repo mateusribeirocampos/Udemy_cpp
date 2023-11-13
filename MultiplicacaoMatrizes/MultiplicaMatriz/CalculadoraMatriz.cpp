@@ -236,12 +236,17 @@ void transpostaMatriz(int **matriz, int linhas, int colunas)
     linhaColunaTransposta = colunas; // A linha da matriz transposta é igual a coluna da matriz original
     colunalinhaTransposta = linhas; // A coluna da matriz transposta é igual a linha da matriz original
 
+    int **matrizTransposta = new int *[linhaColunaTransposta]; // aloca um vetor de ponteiros para matriz transposta
+    for(i = 0; i < linhaColunaTransposta; i++){ // aloca um vetor para cada posição do vetor de ponteiros
+        matrizTransposta[i] = new int[colunalinhaTransposta]; // aloca um vetor de inteiros para cada posição do vetor de ponteiros
+    }
+    
     std::cout << std::endl;
     std::cout << "A transposta da Matriz T: " << std::endl; // Impressão da matriz na tela
     for(i = 0; i < linhaColunaTransposta; i++){
         for(j = 0; j < colunalinhaTransposta; j++){
-            matriz[i][j] = matriz[j][i]; // A matriz transposta é a matriz original com as linhas e colunas invertidas
-            std::cout << std::setw(4) << "  " << matriz[i][j]; // Impressão da matriz na tela
+            matrizTransposta[i][j] = matriz[j][i]; // matrizTransposta inverte a linha e coluna da matriz original
+            std::cout << std::setw(4) << "  " << matrizTransposta[i][j]; // Impressão da matriz na tela
         }
         std::cout << std::endl;
     }
