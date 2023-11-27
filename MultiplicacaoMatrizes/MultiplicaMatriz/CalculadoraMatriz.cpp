@@ -2,12 +2,19 @@
 #include <new>
 #include <iomanip>
 
+<<<<<<< HEAD
 void limpaTela()
 {
     system("clear");
     system("cls");
 }
 
+=======
+void limpaTela(){
+    system("clear");
+    system("cls");
+}
+>>>>>>> origin/main
 void DigitaMatriz(int **&matriz, int **&matriz2, int &linhas, int &colunas, int &linhas1, int &colunas1)
 {
     int i, j;
@@ -185,6 +192,7 @@ void subratraiMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, in
 
 void mulitiplicaMatriz(int **matriz, int **matriz2, int **&matriz3, int linhas, int colunas, int linhas1, int colunas1)
 {
+    limpaTela();
     int i, j, k; // variaveis auxiliares
     // Verifica se o número de colunas da matriz A é igual ao número de linhas da matriz B
     if (colunas == linhas1)
@@ -242,32 +250,56 @@ void transpostaMatriz(int **matriz, int linhas, int colunas)
     linhaColunaTransposta = colunas; // A linha da matriz transposta é igual a coluna da matriz original
     colunalinhaTransposta = linhas; // A coluna da matriz transposta é igual a linha da matriz original
 
+<<<<<<< HEAD
     int **matrizTransposta = new int *[linhaColunaTransposta]; // aloca um vetor de ponteiros
     for (i = 0; i < linhaColunaTransposta; i++)
     {
         matrizTransposta[i] = new int[colunalinhaTransposta]; // aloca um vetor de inteiros para cada posição do vetor de ponteiros
     }
 
+=======
+    int **matrizTransposta = new int *[linhaColunaTransposta]; // aloca um vetor de ponteiros para matriz transposta
+    for(i = 0; i < linhaColunaTransposta; i++){ // aloca um vetor para cada posição do vetor de ponteiros
+        matrizTransposta[i] = new int[colunalinhaTransposta]; // aloca um vetor de inteiros para cada posição do vetor de ponteiros
+    }
+    
+>>>>>>> origin/main
     std::cout << std::endl;
     std::cout << "A transposta da Matriz T: " << std::endl; // Impressão da matriz na tela
     for(i = 0; i < linhaColunaTransposta; i++){
         for(j = 0; j < colunalinhaTransposta; j++){
+<<<<<<< HEAD
             matrizTransposta[i][j] = matrizTransposta[j][i]; // A matriz transposta é a matriz original com as linhas e colunas invertidas
+=======
+            matrizTransposta[i][j] = matriz[j][i]; // matrizTransposta inverte a linha e coluna da matriz original
+>>>>>>> origin/main
             std::cout << std::setw(4) << "  " << matrizTransposta[i][j]; // Impressão da matriz na tela
         }
         std::cout << std::endl;
     }
     std::cout << "Transposta da Matriz T de ordem " << colunalinhaTransposta << "x" << linhaColunaTransposta << std::endl;
 
+<<<<<<< HEAD
     for(i = 0; i < linhaColunaTransposta; i++){
         delete[] matrizTransposta[i]; // libera cada vetor de inteiros do vetor de ponteiros
     }
     delete[] matrizTransposta; // libera o vetor de ponteiros
+=======
+    for(i = 0; i < linhaColunaTransposta; i++){ // libera cada vetor de inteiros do vetor de ponteiros
+        delete[] matrizTransposta[i];
+    }
+    delete[] matrizTransposta; // libera o vetor de ponteiros
+
+
+}
+
+void determinanteMatriz()
+{
+>>>>>>> origin/main
 }
 void inversaMatriz()
 {
 }
-
 void menuInicial()
 {
     int opcoes = 0, linhas = 0, colunas = 0, linhas1 = 0, colunas1 = 0;
@@ -345,10 +377,7 @@ void limpaMemoria(int **matriz, int linhas)
 
 int main()
 {
-    int linhas = 0;
-    int **matriz = nullptr;
-    int **matriz2 = nullptr;
-    int **matriz3 = nullptr;
+    int linhas = 0, **matriz = nullptr, **matriz2 = nullptr, **matriz3 = nullptr;
 
     menuInicial();
 
