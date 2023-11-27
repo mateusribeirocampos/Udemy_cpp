@@ -2,6 +2,12 @@
 #include <new>
 #include <iomanip>
 
+void limpaTela()
+{
+    system("clear");
+    system("cls");
+}
+
 void DigitaMatriz(int **&matriz, int **&matriz2, int &linhas, int &colunas, int &linhas1, int &colunas1)
 {
     int i, j;
@@ -236,16 +242,27 @@ void transpostaMatriz(int **matriz, int linhas, int colunas)
     linhaColunaTransposta = colunas; // A linha da matriz transposta é igual a coluna da matriz original
     colunalinhaTransposta = linhas; // A coluna da matriz transposta é igual a linha da matriz original
 
+    int **matrizTransposta = new int *[linhaColunaTransposta]; // aloca um vetor de ponteiros
+    for (i = 0; i < linhaColunaTransposta; i++)
+    {
+        matrizTransposta[i] = new int[colunalinhaTransposta]; // aloca um vetor de inteiros para cada posição do vetor de ponteiros
+    }
+
     std::cout << std::endl;
     std::cout << "A transposta da Matriz T: " << std::endl; // Impressão da matriz na tela
     for(i = 0; i < linhaColunaTransposta; i++){
         for(j = 0; j < colunalinhaTransposta; j++){
-            matriz[i][j] = matriz[j][i]; // A matriz transposta é a matriz original com as linhas e colunas invertidas
-            std::cout << std::setw(4) << "  " << matriz[i][j]; // Impressão da matriz na tela
+            matrizTransposta[i][j] = matrizTransposta[j][i]; // A matriz transposta é a matriz original com as linhas e colunas invertidas
+            std::cout << std::setw(4) << "  " << matrizTransposta[i][j]; // Impressão da matriz na tela
         }
         std::cout << std::endl;
     }
     std::cout << "Transposta da Matriz T de ordem " << colunalinhaTransposta << "x" << linhaColunaTransposta << std::endl;
+
+    for(i = 0; i < linhaColunaTransposta; i++){
+        delete[] matrizTransposta[i]; // libera cada vetor de inteiros do vetor de ponteiros
+    }
+    delete[] matrizTransposta; // libera o vetor de ponteiros
 }
 void inversaMatriz()
 {
@@ -260,6 +277,7 @@ void menuInicial()
 
     while (opcoes < 1 || opcoes > 7)
     {
+        limpaTela();
         std::cout << "Calculadora de Matrizes" << std::endl;
         std::cout << "1 - Somar duas matrizes" << std::endl;
         std::cout << "2 - Subtrair duas matrizes" << std::endl;
@@ -270,6 +288,8 @@ void menuInicial()
         std::cout << "7 - Sair" << std::endl;
         std::cout << "Digite a opcao desejada: ";
         std::cin >> opcoes;
+
+        limpaTela();
 
         switch (opcoes)
         {
