@@ -30,7 +30,5 @@ Recomenda-se o uso de um ambiente de desenvolvimento integrado (IDE) como [Code:
 
 Este projeto é distribuído sob a licença [MIT](LICENSE).
 
-
-Funtamentos da liguagem C/C++ a projetos!
 --
 ![Alt text](https://github.com/mateusribeirocampos/Udemy_cpp/blob/main/Images/CandCpp.png)
