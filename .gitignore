@@ -45,6 +45,13 @@ tools
 *.patch
 linter.py
 profiler.py
+*.yml
+info.plist
+*.dSYM
+output
+launch.json
+
+
 
 ### Code ###
 .vscode/

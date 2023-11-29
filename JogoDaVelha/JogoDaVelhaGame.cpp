@@ -250,7 +250,7 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
 void menuInicial()
 {
 
-    int opcao;
+    int opcao = 0;
     // Nomes dos jogadores
     string nomeDoJogadorAtual, nomeDoJogadorUm, nomeDoJogadorDois;
 
