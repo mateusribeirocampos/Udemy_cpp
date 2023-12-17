@@ -1,6 +1,5 @@
 #include <iostream>
 #include <vector>
-#include <omp.h> //Biblioteca openMP
 using namespace std;
 
 

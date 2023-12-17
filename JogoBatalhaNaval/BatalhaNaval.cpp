@@ -310,5 +310,7 @@ int main()
 
     menuInicial();
 
+    system("pause");
+
     return 0;
 }

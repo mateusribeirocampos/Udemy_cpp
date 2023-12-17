@@ -44,7 +44,7 @@ void exibeStatus(string palavraComMascara, int tamanhoDaPalavra, int tentativasR
 
     // int cont;
     //  Exibe as letras arriscadas
-    std::__cxx11::basic_string<char>::size_type cont;
+    string::size_type cont;
     cout << "\nLetras arriscadas: ";
     for (cont = 0; cont < letrasJaArriscadas.size(); cont++)
     {

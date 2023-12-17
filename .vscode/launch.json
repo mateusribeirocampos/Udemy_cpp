@@ -3,11 +3,13 @@
   "configurations": [
     {
       "name": "C/C++ Runner: Debug Session",
-      "type": "lldb",
+      "type": "cppvsdbg",
       "request": "launch",
       "args": [],
-      "cwd": "/Users/mateusribeirodecampos/Documents/VsCode.file/Udemy_cpp/JogoDaVelha",
-      "program": "/Users/mateusribeirodecampos/Documents/VsCode.file/Udemy_cpp/JogoDaVelha/build/Debug/outDebug"
+      "stopAtEntry": false,
+      "console": "externalTerminal",
+      "cwd": ".",
+      "program": "build/Debug/outDebug"
     }
   ]
 }
