@@ -25,6 +25,5 @@ int main (){
             cout << "You scored 1000 or more. Impressive!\n"; // será executado porque o valor é 1 ou true
         }
     }    
-
     return 0;
 }

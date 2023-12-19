@@ -8,6 +8,7 @@ int DigiteNotas()
     for (i = 0; i < 8; i++)
     {
         printf("Nota: %i\n", i);
+        printf("Digite a nota: ");
         scanf("%f", &notas[i]);
     }
 }
