@@ -3,13 +3,13 @@
   "configurations": [
     {
       "name": "C/C++ Runner: Debug Session",
-      "type": "cppdbg",
+      "type": "cppvsdbg",
       "request": "launch",
       "args": [],
       "stopAtEntry": false,
       "console": "externalTerminal",
-      "cwd": ".",
-      "program": "build/Debug/outDebug"
+      "cwd": "c:/Users/Mateus Campos/Documents/Aulas/Udemy_cpp/Udemy_cpp/TreinamentoJogo",
+      "program": "c:/Users/Mateus Campos/Documents/Aulas/Udemy_cpp/Udemy_cpp/TreinamentoJogo/build/Debug/outDebug"
     }
   ]
 }
