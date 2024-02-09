@@ -8,9 +8,9 @@ int main (){
     std::cout << "Endereco do numero = " << &num << std::endl; // Imprime o endereço de num
     std::cout << std::endl;
     if(num == *ptr) // Verifica se o valor de num é igual ao valor apontado por ptr
-        std::cout << "num eh igual ao valor apontado por ptr" << &num << std::endl;
+        std::cout << "num eh igual ao valor apontado por ptr = " << &num << std::endl;
     else
-        std::cout << "num nao eh igual ao valor apontado por ptr" << &num << std::endl;
+        std::cout << "num nao eh igual ao valor apontado por ptr = " << &num << std::endl;
 
     std::cout << "\nValor do ponteiro = " << ptr << std::endl; // Imprime o valor de ptr
     std::cout << "Endereco do ponteiro = " << *ptr << std::endl; // Imprime o endereço de ptr
