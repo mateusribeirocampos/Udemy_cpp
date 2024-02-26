@@ -34,7 +34,7 @@ void exibeTabuleiro(char tabuleiro[3][3])
     }
 }
 
-void jogar()
+void jogar(std::string nomeDoJogador1, std::string nomeDoJogador2)
 {
     char tabuleiro[3][3];                  // Tabuleiro do jogo
     int linha = 0, coluna = 0;             // Linha e coluna que o jogador escolheu
@@ -78,6 +78,9 @@ void jogar()
 void menuInicial()
 {
 
+    std::string nomeDoJogador1 = "";	// Nome do jogador 1
+    std::string nomeDoJogador2 = "";	// Nome do jogador 2 
+
     int opcao = 0;
 
     while (opcao != 4)
@@ -91,10 +94,17 @@ void menuInicial()
 
         switch (opcao)
         {
-        case 1:
-            std::cout << "VocE escolheu a opcao JOGAR" << std::endl;
-            jogar();
-            break;
+        #include <string> // Include the header file for std::string
+
+                case 1:
+                    std::cout << "VocE escolheu a opcao JOGAR" << std::endl;
+
+                    std::cout << "Jogador numero 1: " << std::endl;
+                    std::cin >> nomeDoJogador1;
+                    std::cout << "Jogador numero 2: " << std::endl;
+                    std::cin >> nomeDoJogador2;
+                    jogar(nomeDoJogador1, nomeDoJogador2);
+                    break;
 
         case 2:
             std::cout << "Ver Ranking" << std::endl;
