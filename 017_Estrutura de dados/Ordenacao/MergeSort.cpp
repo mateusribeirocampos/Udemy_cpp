@@ -98,7 +98,7 @@ void mergeSort(int vetor[TAM], int indiceEsquerdo, int indiceDireito)
 
 int main()
 {
-    int vetor[TAM] = {10, 9, 8, 7, 6, 5, 4, 3, 2, 1};
+    int vetor[TAM] = {58, 10, 99, 8, 75, 51, 14, 32, 122, 12};
 
     imprimirVetor(vetor);
 
