@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 float notas[8], media = 0;
 int i;
