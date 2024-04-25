@@ -147,13 +147,12 @@ void jogo(string nomeDoJogadorUm, string nomeDoJogadorDois, string nomeDoJogador
         limpaTela();
 
         cout << "\nRodada: " << rodada << "\n";
-        cout << "\n"
-             << nomeDoJogadorUm << " " << pontuacaoJogadorUm << " X " << pontuacaoJogadorDois << " " << nomeDoJogadorDois << endl;
+        cout << "\n" << nomeDoJogadorUm << " " << pontuacaoJogadorUm << " X " << pontuacaoJogadorDois << " " << nomeDoJogadorDois << endl;
 
         // exibe o tabuleiro na tela
         exibeTabuleiro(tabuleiro);
 
-        // Exibequal numero corresponde a posição
+        // Exibe qual numero corresponde a posição
         exibeInstrucoes();
 
         // Atualiza o nome do jogador atual
