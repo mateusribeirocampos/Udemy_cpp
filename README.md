@@ -26,9 +26,5 @@ Certifique-se de ter um compilador C/C++ instalado em sua máquina. Para executa
 
 Recomenda-se o uso de um ambiente de desenvolvimento integrado (IDE) como [Code::Blocks](http://www.codeblocks.org/) ou [Visual Studio Code](https://code.visualstudio.com/) para facilitar o desenvolvimento em C/C++.
 
-## Licença
-
-Este projeto é distribuído sob a licença [MIT](LICENSE).
-
 --
-![Alt text](https://github.com/mateusribeirocampos/Udemy_cpp/blob/main/Images/CandCpp.png)
+![Alt text](/Images/CandCpp.png)
