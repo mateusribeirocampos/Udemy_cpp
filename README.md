@@ -16,22 +16,28 @@ O projeto está organizado da seguinte maneira:
 
 Certifique-se de ter um compilador C/C++ instalado em sua máquina. Para executar os exemplos, siga estas etapas:
 
-1. Navegue até o diretório do exemplo desejado:
+**1. Navegue até o diretório do exemplo desejado:**
   
 ```cmd
    cd exemplos/nome-do-exemplo`.
 ```
-4. Compile o código-fonte:
+
+**2. Compile o código-fonte:**
+
 ```cmd
 gcc -o nome-do-executavel nome-do-arquivo.c (para C)
 ```
+
 ```cmd
 g++ -o nome-do-executavel nome-do-arquivo.cpp` (para C++).
 ```
-6. Execute o programa:
+
+**3. Execute o programa:**
+
 ```cmd
 ./nome-do-executavel`.
 ```
+
 ## Ambiente de Desenvolvimento
 
 Recomenda-se o uso de um ambiente de desenvolvimento integrado (IDE) como [Code::Blocks](http://www.codeblocks.org/) ou [Visual Studio Code](https://code.visualstudio.com/) para facilitar o desenvolvimento em C/C++.
