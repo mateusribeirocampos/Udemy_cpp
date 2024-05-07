@@ -156,7 +156,6 @@ void menuInicial()
 
 int main()
 {
-    int opcao;
 
     menuInicial();
 
