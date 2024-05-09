@@ -5,77 +5,111 @@ void menuInicial();
 
 void limpaTela() { system("cls"); }
 
-void preecheTabuleiro(char tabuleiro[tam][tam]) {
+void preencheTabuleiro(char tabuleiro[tam][tam])
+{
 
   int linhas, colunas;
-  for (int linhas = 0; linhas < tam; linhas++) {
-    for (int colunas = 0; colunas < tam; colunas++) {
+  for (int linhas = 0; linhas < tam; linhas++)
+  {
+    for (int colunas = 0; colunas < tam; colunas++)
+    {
       tabuleiro[linhas][colunas] = '-';
     }
   }
 }
 
-void exibeTabuleiro(char tabuleiro[tam][tam]) {
-  for (int linhas = 0; linhas < tam; linhas++) {
-    for (int colunas = 0; colunas < tam; colunas++) {
+void exibeTabuleiro(char tabuleiro[tam][tam])
+{
+  for (int linhas = 0; linhas < tam; linhas++)
+  {
+    for (int colunas = 0; colunas < tam; colunas++)
+    {
       std::cout << tabuleiro[linhas][colunas];
     }
     std::cout << std::endl;
   }
 }
 
-void jogar() {
-  char tabuleiro[tam][tam];
-  int linhas, colunas;
+void jogar()
+{
+  char tabuleiro[tam][tam]; // Matriz do tabuleiro
   int linhaJogada, colunaJogada;
-  int turnoJogador = 1;
   int rodada;
-  int opcaoFimDoJogo;
+  int turnoDoJogador = 1;
 
-  preecheTabuleiro(tabuleiro);
+  preencheTabuleiro(tabuleiro);
 
-  rodada++;
-}
-std::cout << "Fim do Jogo...!" << std::endl;
-std::cout << "Deseja jogar novamente?" << std::endl;
-while (opcaoFimDoJogo != 3) {
-  std::cout << "----------------------" << std::endl;
-  std::cout << "1 - Jogar novamente" << std::endl;
-  std::cout << "2 - Voltar ao menu inicial" << std::endl;
-  std::cout << "3 - Sair" << std::endl;
-  std::cout << "----------------------" << std::endl;
-  std::cout << ">> ";
-  std::cin >> opcaoFimDoJogo;
+  while (rodada < 9)
+  {
+    exibeTabuleiro(tabuleiro);
+    std::cout << "Jogador " << turnoDoJogador << " faca sua jogada" << std::endl;
+    std::cout << "Linha: ";
+    std::cin >> linhaJogada;
+    std::cout << "Coluna: ";
+    std::cin >> colunaJogada;
 
-  limpaTela();
-
-  switch (opcaoFimDoJogo) {
-  case 1:
-    jogar();
-    break;
-
-  case 2:
-    menuInicial();
-    break;
-
-  case 3:
-    std::cout << "Saindo do jogo...!" << std::endl;
-    std::exit(0);
-    break;
-
-  default:
-    if (opcaoFimDoJogo != 3) {
-      std::cout << "Opcao Invalida" << std::endl;
+    if (tabuleiro[linhaJogada][colunaJogada] == '-')
+    {
+      if (turnoDoJogador == 1)
+      {
+        tabuleiro[linhaJogada][colunaJogada] = 'X';
+        turnoDoJogador = 2;
+      }
+      else
+      {
+        tabuleiro[linhaJogada][colunaJogada] = 'O';
+        turnoDoJogador = 1;
+      }
     }
-    break;
+    else
+    {
+      std::cout << "Jogada Invalida" << std::endl;
+    }
+  rodada++;
+  std::cout << "Rodada: " << rodada << std::endl;
+  }
+  
+  std::cout << "Fim do jogo!!!" << std::endl;
+  int opcaoFimDoJogo;
+  while (opcaoFimDoJogo != 3)
+  {
+    std::cout << "---------------------------" << std::endl;
+    std::cout << "1 - Jogar novamente" << std::endl;
+    std::cout << "2 - Voltar ao menu inicial" << std::endl;
+    std::cout << "3 - Sair" << std::endl;
+    std::cout << "---------------------------" << std::endl;
+    std::cout << ">> ";
+    std::cin >> opcaoFimDoJogo;
+
+    limpaTela();
+
+    switch (opcaoFimDoJogo)
+    {
+    case 1:
+      jogar();
+      break;
+    case 2:
+      menuInicial();
+      break;
+    case 3:
+      std::cout << "Saindo do jogo..." << std::endl;
+      std::exit(0);
+    default:
+      if (opcaoFimDoJogo != 0)
+      {
+        std::cout << "Opcao invalida!" << std::endl;
+      }
+      break;
+    }
   }
 }
-}
 
-void menuInicial() {
+void menuInicial()
+{
   int opcao = 0;
 
-  while (opcao != 4) {
+  while (opcao != 4)
+  {
     std::cout << "---------------------------" << std::endl;
     std::cout << "Jogo da Velha" << std::endl;
     std::cout << "1 - Jogar" << std::endl;
@@ -88,7 +122,8 @@ void menuInicial() {
 
     limpaTela();
 
-    switch (opcao) {
+    switch (opcao)
+    {
     case 1:
       std::cout << "VocE escolheu a opcao JOGAR" << std::endl;
       jogar();
@@ -106,7 +141,8 @@ void menuInicial() {
       break;
 
     default:
-      if (opcao != 4) {
+      if (opcao != 4)
+      {
         std::cout << "Opcao Invalida" << std::endl;
       }
       break;
@@ -114,7 +150,8 @@ void menuInicial() {
   }
 }
 
-int main() {
+int main()
+{
 
   menuInicial();
 
